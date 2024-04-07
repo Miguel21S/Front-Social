@@ -30,6 +30,11 @@ export const Register = () => {
 
     const registrar = async () => {
         try {
+            for (let elemento in user) {
+                if (user[elemento] === "") {
+                    throw new Error("Todos los campos tienen que estar rellenos");
+                }
+            }
             const fetched = await RegisterUser(user);
             console.log("O QUE SUCEDE", fetched);
             // setMsgError(fetched.message);
@@ -41,7 +46,7 @@ export const Register = () => {
             console.log(error);
         }
 
-    }
+    };
 
     return (
         <>
@@ -68,7 +73,7 @@ export const Register = () => {
                         value={user.password || ""}
                         changeEmit={inputHandler}
                     />
-                    <button className="btn btn-success" onClick={ registrar }>Registrarse</button>
+                    <button type='button' className="btn btn-success" onClick={ registrar }>Registrarse</button>
 
                     <p>¿Aún no tienes una cuenta?</p>
                 </div>
