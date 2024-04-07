@@ -1,0 +1,34 @@
+
+.register-design {
+    height: 88vh;
+    width: 100vw;
+
+    background-color: darkgray;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row > input{
+    width: 40ch;
+    margin: 5px;
+    border-radius: 9px;
+}
+
+.row > .btn-success{
+    width: 40ch;
+    margin-top: 15px;
+}
+
+.row{
+    background-color: rgb(33, 21, 21);
+    border: 10px;
+    border-radius: 4px;
+    padding: 12ch;
+    width: 70ch;
+    height: 50ch;
+    align-items: center;
+    justify-content: center; 
+}

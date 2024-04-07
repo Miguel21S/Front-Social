@@ -1,0 +1,47 @@
+.header-design {
+  /* height: 12vh; */
+  width: 100vw;
+
+  /* background-color: darkcyan; */
+  background-color: rgb(63, 71, 71);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: last baseline;
+}
+
+.navigator-design {
+    display: flex;
+    flex-direction: row;
+}
+
+.out-design {
+  color: white;
+  font-weight: bold;
+  margin: 1em;
+  transition: 0.3s;
+}
+
+.out-design:hover {
+  transition: 0.3s;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.header-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.6ch;
+  height: 50px;
+  width: 400px;
+  border: 1px solid rgb(12, 12, 12);
+  border-radius: 2cap;
+  background-color: rgb(63, 71, 71);
+}
+
+.header-center > input {
+  border-radius: 0.8cap;
+  background-color: rgb(63, 71, 71);
+  
+}
