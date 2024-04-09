@@ -68,7 +68,7 @@ export const Login = () => {
           <button className="btn btn-success" onClick={loginMe}>Login</button>
 
           <p>¿Aún no tienes una cuenta?</p>
-          <button type='button' className="btn btn-danger" onClick={ ()=> navigate("/register") }>To Register</button>
+          <label  onClick={ ()=> navigate("/register") }>Registrarse</label>
         </div>
       </div>
 

@@ -11,27 +11,24 @@ import { ListarMisPosts } from "../../services/rootss";
 import { useEffect, useState } from "react";
 
 export const Profile = () => {
-    const { token } = useSelector(userData)
 
+    const [user, setUser] = useState({});
 
     const navigate = useNavigate();
     //Instancia de Redux para escritura
     const dispatch = useDispatch();
 
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-    });
-
     //Conectamos con Redux en modo lectura
 
-    const rdxUser = useSelector(userData)
+    const rdxUser = useSelector(userData);
+    const token = rdxUser.credentials.token;
 
-    // useEffect(()=>{
-    //     if(!rdxUser.credentials.token){
-    //         navigate("/")
-    //     }
-    // }, [rdxUser])
+    useEffect(()=>{
+        if(!rdxUser.credentials.token){
+            navigate("/")
+        }
+    }, [rdxUser])
+
     useEffect(() => {
         const misPosts = async () => {
             try {

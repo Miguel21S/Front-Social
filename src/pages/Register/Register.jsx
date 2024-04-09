@@ -77,9 +77,15 @@ export const Register = () => {
 
                     <p>¿Aún no tienes una cuenta?</p>
 
-                    <button type='button' className="btn btn-success" onClick={ ()=> navigate("/login") }>To Login</button>
+                    <label onClick={ ()=> navigate("/login") }>Acceder</label>
                 </div>
             </div>
         </>
     )
 }
+
+/*
+cardCustom 
+vista detalle
+char.name.length > 10 ? char.name.substring(0.5) : char.name
+*/

@@ -1,6 +1,8 @@
 
 .container-principal{
  height: 40vw;
+ width: 100vw;
+ background-color: black;
 }
 
 .profile-design {

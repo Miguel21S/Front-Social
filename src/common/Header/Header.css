@@ -10,7 +10,7 @@
   align-items: last baseline; */
 
   height: 70px;
-  width: 118.8%;
+  width: 100vw;
   border-bottom: 1px solid #999;
   position: sticky;
   top: 0;
