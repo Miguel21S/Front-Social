@@ -38,26 +38,27 @@ export const Header = () => {
 
   return (
     <div className="header-design">
-      <div className="header-left">
-        <CLink path="/" title="Home" />
-      </div>
+      <div className="header-wrapper">
+        <div className="header-left">
+          <CLink path="/" title="Home" />
+        </div>
 
-      <div className="header-center">
-        <CInput
-          type="text"
-          name="criteria"
-          placeholder="Buscar usuario..."
-          value={criteria || ""}
-          changeEmit={searchHandler}
-        />
-      </div>
+        <div className="header-center">
+          <CInput
+            type="text"
+            name="criteria"
+            placeholder="Buscar usuario..."
+            value={criteria || ""}
+            changeEmit={searchHandler}
+          />
+        </div>
 
-      <div className="header-right">
-        {rdxUser?.credentials?.token ? (
-          <div className="navigator-design">
-            <CLink path="/profile" title={rdxUser?.credentials?.user?.name} dest />
+        <div className="header-right">
+          {rdxUser?.credentials?.token ? (
+            <div className="navigator-design">
+              <CLink path="/profile" title={rdxUser?.credentials?.user?.name} dest />
 
-            {/* <div class="dropdown">
+              {/* <div class="dropdown">
               <button class="dropbtn">Dropdown</button>
               <div class="dropdown-content">
                 <a href="#">Link 1</a>
@@ -65,19 +66,20 @@ export const Header = () => {
                 <a href="#">Link 3</a>
               </div>
             </div> */}
-            <div
-              className="out-design"
-              onClick={() => dispatch(logout({ credentials: "" }))}
-            >
-              log out
+              <div
+                className="out-design"
+                onClick={() => dispatch(logout({ credentials: "" }))}
+              >
+                log out
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="navigator-design">
-            <CLink path="/login" title="Login" />
-            <CLink path="/register" title="Register" />
-          </div>
-        )}
+          ) : (
+            <div className="navigator-design">
+              <CLink path="/login" title="Login" />
+              <CLink path="/register" title="Register" />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

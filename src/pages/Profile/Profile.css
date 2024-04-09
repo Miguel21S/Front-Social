@@ -1,40 +1,66 @@
 
+.container-principal{
+ height: 40vw;
+}
+
 .profile-design {
-    height: 100vh;
-    width: 99.6vw;
+    /* height: 88vh;
+    width: 100vw; */
+    padding: 2em 1em;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(16, 185, 84);
+
+}
+
+.profile-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+    flex-direction: row;
+    background-color: chartreuse;
+}
+
+.profile-left {
+    width: 50vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-      
+    margin: 0px;
+    padding: 2px;
+    background-color: rgb(201, 114, 34);
 }
 
-.profole-wrapper{
-    height: 100%;
-    padding: 0.25rem 0.5rem;
-    border: 10px;
-    border-radius: 7px white;  
-}
-.profile-top, .profile-button{
-    width: 178.6ch;
-    /* height: 42vh; */
-    border: 10px white;
-    border-radius: 7px;
+
+.profile-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 2px;
+    background-color: black;
+    color: white;
 }
 
-hr{
-    width: 25ch;
+.profile-Seguidores{
+margin-inline: 3em;
 }
-/*.profile-button{
-    ( background-color: white;
-    color: black; )
-    width: 178.6ch;
-    (height: 43vh;)
-    border-radius: 7px;
 
-}*/
+.profile-Siguiendo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: 7em;
+}
 
-.profile-myProfile{
-    background-color: yellow;
-    height: 42ch;
+.profile-posts{
+    margin-inline: 7em;
 }

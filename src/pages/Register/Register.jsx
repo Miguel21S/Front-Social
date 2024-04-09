@@ -5,12 +5,12 @@ import { CInput } from '../../common/CInput/CInput'
 //Redux
 // import { userData, register, login } from "../../app/slices/userSlice";
 // import { useDispatch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RegisterUser } from '../../services/rootss';
 import { useState } from 'react';
 
 export const Register = () => {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     //Instancia de Redux para escritura
     // const dispatch = useDispatch();
@@ -39,9 +39,9 @@ export const Register = () => {
             console.log("O QUE SUCEDE", fetched);
             // setMsgError(fetched.message);
 
-            // setTimeout(() => {
-            //     navigate("/login");
-            // }, 1200);
+            setTimeout(() => {
+                navigate("/login");
+            }, 1200);
         } catch (error) {
             console.log(error);
         }
@@ -51,7 +51,7 @@ export const Register = () => {
     return (
         <>
             <div className="register-design">
-                <div className="row">
+                <div className="rowl">
                     <CInput
                         type="name"
                         name="name"
@@ -76,6 +76,8 @@ export const Register = () => {
                     <button type='button' className="btn btn-success" onClick={ registrar }>Registrarse</button>
 
                     <p>¿Aún no tienes una cuenta?</p>
+
+                    <button type='button' className="btn btn-success" onClick={ ()=> navigate("/login") }>To Login</button>
                 </div>
             </div>
         </>

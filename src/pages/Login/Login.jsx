@@ -50,7 +50,7 @@ export const Login = () => {
     <>
 
       <div className="login-design">
-        <div className="row">
+        <div className="rowl">
           <CInput
             type="email"
             name="email"
@@ -68,6 +68,7 @@ export const Login = () => {
           <button className="btn btn-success" onClick={loginMe}>Login</button>
 
           <p>¿Aún no tienes una cuenta?</p>
+          <button type='button' className="btn btn-danger" onClick={ ()=> navigate("/register") }>To Register</button>
         </div>
       </div>
 

@@ -50,7 +50,7 @@ export const loginService = async (user) => {
 
 export const ListarUsuarios = async (token) => {
   const options = {
-    const: "GET",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
@@ -61,6 +61,30 @@ export const ListarUsuarios = async (token) => {
     const response = await fetch(`${root}users`, options);
     const data = await response.json();
 
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ListarMisPosts = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+  console.log(token, "TOKEN DE LA RUTA")
+  try {
+    const response = await fetch(`${root}posts/own`, options);
+    console.log(response, "RESPONSE DE LA RUTA")
+    const data = await response.json();
+console.log(data, " DATA DE LA RUTA")
     if (!data.success) {
       throw new Error(data.message);
     }

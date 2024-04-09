@@ -1,6 +1,6 @@
 
 .login-design {
-    height: 88vh;
+    height: 89.9vh;
     width: 100vw;
 
     background-color: darkgray;
@@ -11,18 +11,18 @@
     align-items: center;
 }
 
-.row > input{
+.rowl > input{
     width: 40ch;
     margin: 5px;
     border-radius: 9px;
 }
 
-.row > .btn-success{
+.rowl > .btn-success{
     width: 40ch;
     margin-top: 15px;
 }
 
-.row{
+.rowl{
     background-color: rgb(33, 21, 21);
     border: 10px;
     border-radius: 4px;
