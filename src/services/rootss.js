@@ -13,7 +13,7 @@ export const RegisterUser = async (user) => {
   try {
     const response = await fetch(`${root}auth/register`, options)
     const data = await response.json();
-    
+
     if (!data.success) {
       throw new Error(data.message);
     }
@@ -79,12 +79,57 @@ export const ListarMisPosts = async (token) => {
       "Authorization": `Bearer ${token}`
     },
   };
-  console.log(token, "TOKEN DE LA RUTA")
+
   try {
     const response = await fetch(`${root}posts/own`, options);
-    console.log(response, "RESPONSE DE LA RUTA")
     const data = await response.json();
-console.log(data, " DATA DE LA RUTA")
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ListaDeSiguiendo = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }
+  }
+
+  try {
+    const response = await fetch(`${root}users/followers`, options);
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const ListaDeMisSeguidores = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }
+  }
+
+  try {
+    const response = await fetch(`${root}users/following`, options);
+    const data = await response.json()
+    
     if (!data.success) {
       throw new Error(data.message);
     }
