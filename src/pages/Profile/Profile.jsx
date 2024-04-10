@@ -7,14 +7,21 @@ import { Link, useNavigate } from "react-router-dom"
 
 // import { profile } from "../../app/slices/cartSlice";
 import { useDispatch } from 'react-redux';
-import { ListaDeMisSeguidores, ListaDeSiguiendo, ListarMisPosts } from "../../services/rootss";
+import { ListaDeMisSeguidores, ListaDeSiguiendo, ListarMisPosts, MyPerfil } from "../../services/rootss";
 import { useEffect, useState } from "react";
 
 export const Profile = () => {
 
+    const [perfi, setPerfil] = useState({});
     const [posts, setPosts] = useState({});
     const [siguiendo, setSiguiendo] = useState({});
     const [siguidores, setSiguidores] = useState({});
+
+    const [activeTab, setActiveTab] = useState("London");
+
+    const openCity = (cityName) => {
+        setActiveTab(cityName);
+    };
 
     const navigate = useNavigate();
     //Instancia de Redux para escritura
@@ -30,6 +37,21 @@ export const Profile = () => {
             navigate("/")
         }
     }, [rdxUser])
+
+    /////////////////    LISTAR MIS POSTS     ///////////////////////
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const perfil = await MyPerfil(token);
+                setPerfil(perfil.data);
+                console.log("QUE PASSA PERFIL DIME", perfil)
+
+            } catch (error) {
+                console.log("Error en fetching profile:", error);
+            }
+        };
+        fetchData();
+    }, [token]);
 
     /////////////////    LISTAR MIS POSTS     ///////////////////////
     useEffect(() => {
@@ -50,7 +72,7 @@ export const Profile = () => {
     useEffect(() => {
         const losQeSigo = async () => {
             try {
-                const sigo = ListaDeSiguiendo(token);
+                const sigo = await ListaDeSiguiendo(token);
                 setSiguiendo(sigo);
                 console.log("QUE PASSA SIGO DIME", sigo)
             } catch (error) {
@@ -61,11 +83,11 @@ export const Profile = () => {
     }, [token])
 
     /////////////////    LISTAR MIS USUARIOS QUE SIGO     ///////////////////////
-    useEffect(()=> {
-        const misSeguidores = async() => {
+    useEffect(() => {
+        const misSeguidores = async () => {
             try {
-                const Seguidore = ListaDeMisSeguidores(token);
-                setSiguidores(setSiguidores);
+                const Seguidore = await ListaDeMisSeguidores(token);
+                setSiguidores(Seguidore);
                 console.log("QUE PASSA SEGUIDORES DIME", Seguidore)
             } catch (error) {
                 console.log("Error en fetching users:", error);
@@ -80,8 +102,17 @@ export const Profile = () => {
                 <div className="profile-design">
                     <div className="profile-wrapper">
                         <div className="profile-left">
-                            <p>Usuario Miguel</p>
-                            <p>Perfil</p>
+                            {perfi?.length > 0 ? (
+                                perfi.map((perf) => (
+                                    <div key={perf._id}>
+                                        <p>Usuario: {perf.name}</p>
+                                        <p>Email: {perf.email}</p>
+                                    </div>
+                                ))
+
+                            ) : (
+                                <p>No hay datos de perfil disponibles</p>
+                            )}
                         </div>
 
                         <hr />
@@ -97,6 +128,47 @@ export const Profile = () => {
                     </Link> */}
                     </div>
 
+                </div>
+
+                <div className="profileMisPostes">
+                    <h2>Tabs</h2>
+                    <p>Click on the buttons inside the tabbed menu:</p>
+
+                    <div className="tab">
+                        <button
+                            className={activeTab === "London" ? "tablinks active" : "tablinks"}
+                            onClick={() => openCity("London")}
+                        >
+                            London
+                        </button>
+                        <button
+                            className={activeTab === "Paris" ? "tablinks active" : "tablinks"}
+                            onClick={() => openCity("Paris")}
+                        >
+                            Paris
+                        </button>
+                        <button
+                            className={activeTab === "Tokyo" ? "tablinks active" : "tablinks"}
+                            onClick={() => openCity("Tokyo")}
+                        >
+                            Tokyo
+                        </button>
+                    </div>
+
+                    <div id="London" className="tabcontent" style={{ display: activeTab === "London" ? "block" : "none" }}>
+                        <h3>London</h3>
+                        <p>London is the capital city of England.</p>
+                    </div>
+
+                    <div id="Paris" className="tabcontent" style={{ display: activeTab === "Paris" ? "block" : "none" }}>
+                        <h3>Paris</h3>
+                        <p>Paris is the capital of France.</p>
+                    </div>
+
+                    <div id="Tokyo" className="tabcontent" style={{ display: activeTab === "Tokyo" ? "block" : "none" }}>
+                        <h3>Tokyo</h3>
+                        <p>Tokyo is the capital of Japan.</p>
+                    </div>
                 </div>
             </div>
         </>

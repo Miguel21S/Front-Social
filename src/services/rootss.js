@@ -1,6 +1,7 @@
 
 const root = "http://localhost:4999/api/";
 
+////////////////  RUTA REGISTRARSE  /////////////////////////////
 export const RegisterUser = async (user) => {
   const options = {
     method: "POST",
@@ -48,6 +49,7 @@ export const loginService = async (user) => {
   }
 };
 
+////////////////  RUTA LOGIN  /////////////////////////////
 export const ListarUsuarios = async (token) => {
   const options = {
     method: "GET",
@@ -71,6 +73,31 @@ export const ListarUsuarios = async (token) => {
   }
 }
 
+////////////////  RUTA PERFIL  /////////////////////////////
+export const MyPerfil = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+
+  try {
+    const response = await fetch(`${root}users/profile`, options);
+    const data = await response.json();
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
+
+  }
+}
+
+////////////////  RUTA DE MIS POSTS  /////////////////////////////
 export const ListarMisPosts = async (token) => {
   const options = {
     method: "GET",
@@ -94,6 +121,7 @@ export const ListarMisPosts = async (token) => {
   }
 }
 
+////////////////  RUTA DE USUARIOS QUE SIGO  /////////////////////////////
 export const ListaDeSiguiendo = async (token) => {
   const options = {
     method: "GET",
@@ -117,6 +145,7 @@ export const ListaDeSiguiendo = async (token) => {
   }
 }
 
+////////////////  RUTA DE MIS SEGUIDORES  /////////////////////////////
 export const ListaDeMisSeguidores = async (token) => {
   const options = {
     method: "GET",
@@ -129,7 +158,7 @@ export const ListaDeMisSeguidores = async (token) => {
   try {
     const response = await fetch(`${root}users/following`, options);
     const data = await response.json()
-    
+
     if (!data.success) {
       throw new Error(data.message);
     }
