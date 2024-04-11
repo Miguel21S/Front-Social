@@ -1,0 +1,47 @@
+
+.postContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.tab > button{
+    margin: 10px;
+}
+
+div > button{
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+.btn-primary{
+    margin-right: 10px;
+}
+
+.bi-heart{
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#like{
+    background-color: transparent;
+
+}
+
+.bi-heart:hover{
+    background-color: red;
+}
+
+.btn-primary:hover{
+    border-color: red;
+}
+
+#gutters {
+    padding: 0;
+}

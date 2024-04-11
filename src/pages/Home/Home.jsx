@@ -54,12 +54,9 @@ export const Home = () => {
 
         </div>
 
-        <div className="home-bottom">
-          posts
+        <div className="profileMisPostes">
           <Posts />
         </div>
-        soy home
-
       </div>
 
     </>

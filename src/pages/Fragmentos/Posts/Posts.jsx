@@ -28,7 +28,8 @@ export const Posts = () => {
             navigate("/")
         }
     }, [rdxUser])
-
+    
+    /////////////////    LISTAR POSTS     ///////////////////////
     useEffect(() => {
         const listaPosts = async () => {
             try {
