@@ -14,18 +14,22 @@ import { Post } from "../Post/Post";
 export const Profile = () => {
 
     const [perfi, setPerfil] = useState({});
-    // const [posts, setPosts] = useState({});
     const [siguiendo, setSiguiendo] = useState({});
     const [siguidores, setSiguidores] = useState({});
-    const [showPopup, setShowPopup] = useState(false);
+    const [miSeguidores, setMiSeguidores] = useState(false);
+    const [seguidosPorMi, setSeguidosPorMi] = useState(false);
 
 
     const navigate = useNavigate();
     //Instancia de Redux para escritura
     const dispatch = useDispatch();
 
-    const togglePopup = () => {
-        setShowPopup(!showPopup);
+    const miSeguidoresTogglePopup = () => {
+        setMiSeguidores(!miSeguidores);
+    };
+
+    const seguidosPorMiTogglePopup = () => {
+        setSeguidosPorMi(!seguidosPorMi);
     };
 
     //Conectamos con Redux en modo lectura
@@ -52,20 +56,6 @@ export const Profile = () => {
         };
         miPerfil();
     }, [token]);
-
-    /////////////////    LISTAR MIS POSTS     ///////////////////////
-    // useEffect(() => {
-    //     const misPosts = async () => {
-    //         try {
-    //             const posts = await ListarMisPosts(token);
-    //             setPosts(posts);
-    //             console.log("QUE PASSA POST DIME", posts)
-    //         } catch (error) {
-    //             console.log("Error en fetching users:", error);
-    //         }
-    //     }
-    //     misPosts();
-    // }, [token])
 
     /////////////////    LISTAR MIS USUARIOS QUE SIGO     ///////////////////////
 
@@ -120,20 +110,22 @@ export const Profile = () => {
 
                             <div className="profile-posts">Posts 1256.555</div>
 
-                            <div className="container">
-                                <div onClick={togglePopup} className="profile-Seguidores">Seguidores 1256.555</div>
-                                {showPopup && (
+                            <div className="containerPopup-Top">
+                                <div onClick={miSeguidoresTogglePopup} className="profile-Seguidores">Seguidores 1256.555</div>
+                                {miSeguidores && (
                                     <div className="popup">
-                                        <button onClick={togglePopup}>Cerrar</button>
+                                        <button onClick={miSeguidoresTogglePopup}>Cerrar</button>
                                         <h2>Vista Reducida SEGUIDORES</h2>
                                         {/* Contenido de la vista reducida */}
                                     </div>
                                 )}
+                            </div>
 
-                                <div onClick={togglePopup} className="profile-Siguiendo">Siguiendo 1256.555</div>
-                                {showPopup && (
+                            <div className="containerPopup-Button">
+                                <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo 1256.555</div>
+                                {seguidosPorMi && (
                                     <div className="popup">
-                                        <button onClick={togglePopup}>Cerrar</button>
+                                        <button onClick={seguidosPorMiTogglePopup}>Cerrar</button>
                                         <h2>Vista Reducida SEGUIDOS</h2>
                                         {/* Contenido de la vista reducida */}
                                     </div>
@@ -151,7 +143,7 @@ export const Profile = () => {
                 <div className="profileMisPostes">
                     <Post />
                 </div>
-            </div>
+            </div >
         </>
     )
 }
