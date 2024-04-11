@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const Post = () => {
     const navigate = useNavigate();
 
-    const [activeTab, setActiveTab] = useState("London");
+    const [activeTab, setActiveTab] = useState("Posts");
     const [posts, setPosts] = useState([]);
 
     const openCity = (cityName) => {
@@ -50,10 +50,10 @@ export const Post = () => {
 
                     <div className="tab">
                         <button
-                            className={activeTab === "London" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCity("London")}
+                            className={activeTab === "Posts" ? "tablinks active" : "tablinks"}
+                            onClick={() => openCity("Posts")}
                         >
-                            London
+                            PUBLICACIONES
                         </button>
                         <button
                             className={activeTab === "Paris" ? "tablinks active" : "tablinks"}
@@ -69,8 +69,8 @@ export const Post = () => {
                         </button>
                     </div>
 
-                    <div id="London" className="tabcontent" style={{ display: activeTab === "London" ? "block" : "none" }}>
-                        <h3>London</h3>
+                    <div id="Posts" className="tabcontent" style={{ display: activeTab === "Posts" ? "block" : "none" }}>
+                        <h3>Posts</h3>
                         <div className="row">
                             {
                                 posts?.length > 0 ? (

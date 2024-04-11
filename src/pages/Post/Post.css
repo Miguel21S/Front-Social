@@ -1,5 +1,5 @@
 
-.tab{
+.postContainer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,8 @@
     margin: 10px;
 }
 
-.col-md-3{
-    margin: 5px;
-    
+div > button{
+    background-color: transparent;
+    border: none;
+    color: black;
 }

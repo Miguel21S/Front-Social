@@ -17,14 +17,18 @@ export const Profile = () => {
     // const [posts, setPosts] = useState({});
     const [siguiendo, setSiguiendo] = useState({});
     const [siguidores, setSiguidores] = useState({});
+    const [showPopup, setShowPopup] = useState(false);
 
 
     const navigate = useNavigate();
     //Instancia de Redux para escritura
     const dispatch = useDispatch();
 
-    //Conectamos con Redux en modo lectura
+    const togglePopup = () => {
+        setShowPopup(!showPopup);
+    };
 
+    //Conectamos con Redux en modo lectura
     const rdxUser = useSelector(userData);
     const token = rdxUser.credentials.token;
 
@@ -115,8 +119,26 @@ export const Profile = () => {
                         <div className="profile-right">
 
                             <div className="profile-posts">Posts 1256.555</div>
-                            <div className="profile-Seguidores">Seguidores 1256.555</div>
-                            <div className="profile-Siguiendo">Siguiendo 1256.555</div>
+
+                            <div className="container">
+                                <div onClick={togglePopup} className="profile-Seguidores">Seguidores 1256.555</div>
+                                {showPopup && (
+                                    <div className="popup">
+                                        <button onClick={togglePopup}>Cerrar</button>
+                                        <h2>Vista Reducida SEGUIDORES</h2>
+                                        {/* Contenido de la vista reducida */}
+                                    </div>
+                                )}
+
+                                <div onClick={togglePopup} className="profile-Siguiendo">Siguiendo 1256.555</div>
+                                {showPopup && (
+                                    <div className="popup">
+                                        <button onClick={togglePopup}>Cerrar</button>
+                                        <h2>Vista Reducida SEGUIDOS</h2>
+                                        {/* Contenido de la vista reducida */}
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         {/* <Link to='/'>
