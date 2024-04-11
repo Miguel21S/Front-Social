@@ -1,14 +1,27 @@
 
 import "./Home.css";
-// import Profiler from '../Profile/Profile'
 
 import { useSelector } from "react-redux";
 import { searchData } from "../../app/slices/searchSlice";
-import { useEffect } from "react";
-// import { Profile } from "../Profile/Profile";
-export const Home = () => {
-  //Instancia de Redux en modo lectura para home
+import { userData } from "../../app/slices/userSlice";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Posts } from "../Fragmentos/Posts/Posts";
 
+export const Home = () => {
+  const navigate = useNavigate();
+
+  //Conectamos con Redux en modo lectura
+  const rdxUser = useSelector(userData);
+  const token = rdxUser.credentials.token;
+
+  useEffect(() => {
+    if (!rdxUser.credentials.token) {
+      navigate("/")
+    }
+  }, [rdxUser])
+
+  //Instancia de Redux en modo lectura para home
   const searchRdx = useSelector(searchData);
 
   useEffect(() => {
@@ -38,16 +51,12 @@ export const Home = () => {
 
             </div>
           </div>
-          
-          <div className="tab">
-            <button className="tablinks" onclick>London</button>
-            <button className="tablinks" onclick>Paris</button>
-            <button className="tablinks" onclick>Tokyo</button>
-          </div>
+
         </div>
 
         <div className="home-bottom">
-          item 2
+          posts
+          <Posts />
         </div>
         soy home
 

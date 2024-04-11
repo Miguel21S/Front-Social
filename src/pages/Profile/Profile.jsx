@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { ListaDeMisSeguidores, ListaDeSiguiendo, MyPerfil } from "../../services/rootss";
 import { useEffect, useState } from "react";
-import { Post } from "../Post/Post";
+import { Post } from "../Fragmentos/Post/Post"
 
 export const Profile = () => {
 

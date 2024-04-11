@@ -25,6 +25,7 @@ export const RegisterUser = async (user) => {
   }
 }
 
+////////////////  RUTA LOGIN  /////////////////////////////
 export const loginService = async (user) => {
   const options = {
     method: "POST",
@@ -49,7 +50,7 @@ export const loginService = async (user) => {
   }
 };
 
-////////////////  RUTA LOGIN  /////////////////////////////
+////////////////  RUTA LISTAR USUARIOS  /////////////////////////////
 export const ListarUsuarios = async (token) => {
   const options = {
     method: "GET",
@@ -94,6 +95,30 @@ export const MyPerfil = async (token) => {
   } catch (error) {
     return error;
 
+  }
+}
+
+////////////////  RUTA DE TODOS LOS POSTS  /////////////////////////////
+export const ListaDePosts = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}posts`, options);
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    return error;
   }
 }
 

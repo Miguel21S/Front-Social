@@ -1,9 +1,9 @@
 
 import "./Post.css"
 import React, { useEffect, useState } from 'react'
-import { ListarMisPosts } from "../../services/rootss";
+import { ListarMisPosts } from "../../../services/rootss";
 import { useSelector } from "react-redux";
-import { userData } from "../../app/slices/userSlice";
+import { userData } from "../../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 
@@ -13,12 +13,11 @@ export const Post = () => {
     const [activeTab, setActiveTab] = useState("Posts");
     const [posts, setPosts] = useState([]);
 
-    const openCity = (cityName) => {
-        setActiveTab(cityName);
+    const openCard = (cardName) => {
+        setActiveTab(cardName);
     };
 
     //Conectamos con Redux en modo lectura
-
     const rdxUser = useSelector(userData);
     const token = rdxUser.credentials.token;
 
@@ -45,27 +44,25 @@ export const Post = () => {
         <>
             <div className='postContainer'>
                 <div className="profileMisPostes">
-                    <h2>Tabs</h2>
-                    <p>Click on the buttons inside the tabbed menu:</p>
 
                     <div className="tab">
                         <button
                             className={activeTab === "Posts" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCity("Posts")}
+                            onClick={() => openCard("Posts")}
                         >
                             PUBLICACIONES
                         </button>
                         <button
                             className={activeTab === "Paris" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCity("Paris")}
+                            onClick={() => openCard("Paris")}
                         >
-                            Paris
+                            ***T***
                         </button>
                         <button
                             className={activeTab === "Tokyo" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCity("Tokyo")}
+                            onClick={() => openCard("Tokyo")}
                         >
-                            Tokyo
+                            ***K***
                         </button>
                     </div>
 
@@ -75,7 +72,7 @@ export const Post = () => {
                             {
                                 posts?.length > 0 ? (
                                     posts.map((post) => (
-                                        <div className="col-md-3" key={post._id}>
+                                        <div className="col-md-4" key={post._id}>
                                             <div className="card mb-4 h-100">
                                                 <img src="..." className="card-img-top" alt="..." />
                                                 <div className="card-body">
@@ -83,7 +80,9 @@ export const Post = () => {
                                                     <p className="card-text">{post.title}</p>
                                                     <p className="card-text">{post.tests.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
 
-                                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                                    <button className="btn btn-primary">Go somewhere</button>
+                                                    <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
+                                                    <label htmlFor="">0</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,13 +96,13 @@ export const Post = () => {
                     </div>
 
                     <div id="Paris" className="tabcontent" style={{ display: activeTab === "Paris" ? "block" : "none" }}>
-                        <h3>Paris</h3>
-                        <p>Paris is the capital of France.</p>
+                        <h3>***T****</h3>
+                        <p>--------------------.</p>
                     </div>
 
                     <div id="Tokyo" className="tabcontent" style={{ display: activeTab === "Tokyo" ? "block" : "none" }}>
-                        <h3>Tokyo</h3>
-                        <p>Tokyo is the capital of Japan.</p>
+                        <h3>***K***</h3>
+                        <p>------------------.</p>
                     </div>
                 </div>
             </div>
