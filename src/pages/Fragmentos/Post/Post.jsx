@@ -56,7 +56,7 @@ export const Post = () => {
                             className={activeTab === "Paris" ? "tablinks active" : "tablinks"}
                             onClick={() => openCard("Paris")}
                         >
-                            ***T***
+                            <i class="bi bi-bookmarks"></i>
                         </button>
                         <button
                             className={activeTab === "Tokyo" ? "tablinks active" : "tablinks"}

@@ -1,23 +1,26 @@
 
 import "./Posts.css";
-// import Profiler from '../Profile/Profile'
-
-
 import { userData } from "../../../app/slices/userSlice";
 import React, { useEffect, useState } from "react";
 import { ListaDePosts } from "../../../services/rootss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CreatePost } from "../CrearPost/CrearPost";
 
 export const Posts = () => {
     const navigate = useNavigate();
 
-    const [activeTab, setActiveTab] = useState("Posts");
     const [posts, setPosts] = useState([]);
+    const [crearPost, setCrearPost] = useState(false);
 
-    const openCard = (cardName) => {
-      setActiveTab(cardName);
+    const crearPostTogglePopup = () => {
+        setCrearPost(!crearPost);
     };
+
+    // const [pages, setPages] = useState({
+    //     previous: "",
+    //     next: ""
+    // })
 
     //Conectamos con Redux en modo lectura
     const rdxUser = useSelector(userData);
@@ -28,12 +31,13 @@ export const Posts = () => {
             navigate("/")
         }
     }, [rdxUser])
-    
+
     /////////////////    LISTAR POSTS     ///////////////////////
     useEffect(() => {
         const listaPosts = async () => {
             try {
                 const postes = await ListaDePosts(token)
+                // setPages({ previous: postes.data.prev, next: postes.data.next })
                 setPosts(postes.data)
                 console.log("QUE PASSA todos POST DIME", postes)
             } catch (error) {
@@ -41,48 +45,37 @@ export const Posts = () => {
             }
         }
         listaPosts();
-
     }, [token]);
+
+    // const changePage = async (destination) => {
+    //     const li = await ListaDePosts()
+
+    //     try {
+    //         destination ? pages.next : pages.previous
+    //         setPages({ previous: res.data.prev, next: res.data.next })
+    //         setCharacters(res.data)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     return (
         <>
             <div className='postContainer'>
                 <div className="profileMisPostes">
+                    <div id="postColunas" className="row">
 
-                    <div className="tab">
-                        <button
-                            className={activeTab === "Posts" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCard("Posts")}
-                        >
-                            PUBLICACIONES
-                        </button>
-                        <button
-                            className={activeTab === "Paris" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCard("Paris")}
-                        >
-                            ***T***
-                        </button>
-                        <button
-                            className={activeTab === "Tokyo" ? "tablinks active" : "tablinks"}
-                            onClick={() => openCard("Tokyo")}
-                        >
-                            ***K***
-                        </button>
-                    </div>
-
-                    <div id="Posts" className="tabcontent" style={{ display: activeTab === "Posts" ? "block" : "none" }}>
-                        <h3>Posts</h3>
-                        <div className="row">
+                        <div id="posts-latera" className="col-9">
                             {
                                 posts?.length > 0 ? (
                                     posts.map((post) => (
-                                        <div className="col-md-4" key={post._id}>
+                                        <div className="cards" key={post._id}>
                                             <div className="card mb-4 h-100">
                                                 <img src="..." className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h5 className="card-title">{post.userName}</h5>
                                                     <p className="card-text">{post.title}</p>
-                                                    <p className="card-text">{post.tests.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
+                                                    <p className="card-text">{post.tests?.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
 
                                                     <button className="btn btn-primary">Go somewhere</button>
                                                     <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
@@ -96,17 +89,23 @@ export const Posts = () => {
                                 )
 
                             }
+
+                            {/* <div onClick={() => changePage(false)}>Prev</div>
+                            <div onClick={() => changePage(true)}>Next</div> */}
+
                         </div>
-                    </div>
 
-                    <div id="Paris" className="tabcontent" style={{ display: activeTab === "Paris" ? "block" : "none" }}>
-                        <h3>***T****</h3>
-                        <p>--------------------.</p>
-                    </div>
-
-                    <div id="Tokyo" className="tabcontent" style={{ display: activeTab === "Tokyo" ? "block" : "none" }}>
-                        <h3>***K***</h3>
-                        <p>------------------.</p>
+                        <div id="menu-latera" className="col-3">
+                            <div className="containerPopup-Button">
+                                <button onClick={crearPostTogglePopup} className="crearPos"><i className="bi bi-building-fill-add"></i>Crear</button>
+                                {crearPost && (
+                                    <div className="popup">
+                                        <button onClick={crearPostTogglePopup}><i className="bi bi-file-excel"></i></button>
+                                        <CreatePost />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

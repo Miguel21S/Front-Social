@@ -19,7 +19,6 @@ export const Profile = () => {
     const [miSeguidores, setMiSeguidores] = useState(false);
     const [seguidosPorMi, setSeguidosPorMi] = useState(false);
 
-
     const navigate = useNavigate();
     //Instancia de Redux para escritura
     const dispatch = useDispatch();
@@ -42,7 +41,7 @@ export const Profile = () => {
         }
     }, [rdxUser])
 
-    /////////////////    LISTAR MI PERFIL     ///////////////////////
+    /////////////////    MI PERFIL     ///////////////////////
     useEffect(() => {
         const miPerfil = async () => {
             try {
@@ -114,7 +113,7 @@ export const Profile = () => {
                                 <div onClick={miSeguidoresTogglePopup} className="profile-Seguidores">Seguidores 1256.555</div>
                                 {miSeguidores && (
                                     <div className="popup">
-                                        <button onClick={miSeguidoresTogglePopup}>Cerrar</button>
+                                        <button onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
                                         <h2>Vista Reducida SEGUIDORES</h2>
                                         {/* Contenido de la vista reducida */}
                                     </div>
@@ -125,7 +124,7 @@ export const Profile = () => {
                                 <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo 1256.555</div>
                                 {seguidosPorMi && (
                                     <div className="popup">
-                                        <button onClick={seguidosPorMiTogglePopup}>Cerrar</button>
+                                        <button onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>
                                         <h2>Vista Reducida SEGUIDOS</h2>
                                         {/* Contenido de la vista reducida */}
                                     </div>

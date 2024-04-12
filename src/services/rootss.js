@@ -179,15 +179,38 @@ export const ListaDeMisSeguidores = async (token) => {
       "Authorization": `Bearer ${token}`,
     }
   }
-
+  
   try {
     const response = await fetch(`${root}users/following`, options);
     const data = await response.json()
+    
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+////////////////  RUTA DE CREAR POST  /////////////////////////////
+export const CrearPost = async (token) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(token),
+  }
+
+  try {
+    const response = await fetch(`${root}posts`, options)
+    const data = await response.json();
 
     if (!data.success) {
       throw new Error(data.message);
     }
-
     return data;
   } catch (error) {
     return error;

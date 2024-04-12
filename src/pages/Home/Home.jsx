@@ -6,14 +6,32 @@ import { searchData } from "../../app/slices/searchSlice";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MyPerfil } from "../../services/rootss";
 import { Posts } from "../Fragmentos/Posts/Posts";
 
 export const Home = () => {
   const navigate = useNavigate();
 
+  const [miPerfil, setMiPerfil] = useState({});
+
   //Conectamos con Redux en modo lectura
   const rdxUser = useSelector(userData);
   const token = rdxUser.credentials.token;
+
+
+  useEffect(() => {
+    const perfil = async () => {
+      try {
+        const misDatos = await MyPerfil(token);
+        setMiPerfil(misDatos.data);
+        console.log("QUE PASSA PERFIL DIME", misDatos.data)
+
+      } catch (error) {
+        console.log("Error en fetching profile:", error);
+      }
+    };
+    perfil();
+  }, [token])
 
   useEffect(() => {
     if (!rdxUser.credentials.token) {
@@ -37,8 +55,19 @@ export const Home = () => {
             <div className="profile-design">
               <div className="profile-wrapper">
                 <div className="profile-left">
-                  <p>Usuario Miguel</p>
-                  <p>Perfil</p>
+                  {
+                    miPerfil?.length > 0 ? (
+
+                      miPerfil.map((perfil) => (
+                        <div className="pe" key={perfil._id}>
+                          <p>{perfil.name}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No hay datos de perfil disponibles</p>
+                    )
+                  }
+
                 </div>
 
                 <hr />
@@ -54,7 +83,7 @@ export const Home = () => {
 
         </div>
 
-        <div className="profileMisPostes">
+        <div className="todosPostes">
           <Posts />
         </div>
       </div>
