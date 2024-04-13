@@ -179,15 +179,15 @@ export const ListaDeMisSeguidores = async (token) => {
       "Authorization": `Bearer ${token}`,
     }
   }
-  
+
   try {
     const response = await fetch(`${root}users/following`, options);
     const data = await response.json()
-    
+
     if (!data.success) {
       throw new Error(data.message);
     }
-    
+
     return data;
   } catch (error) {
     return error;
@@ -195,19 +195,45 @@ export const ListaDeMisSeguidores = async (token) => {
 }
 
 ////////////////  RUTA DE CREAR POST  /////////////////////////////
-export const CrearPost = async (token) => {
+// export const CrearPost = async (token) => {
+//   const options = {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(token),
+//   };
+//   console.log(token)
+//   try {
+//     // console.log("root:", `${root}posts`, options)
+
+//     const response = await fetch(`${root}posts`, options)
+
+//     // console.log("RESPONSE", response)
+
+//     const data = await response.json();
+
+//     if (!data.success) {
+//       throw new Error(data.message);
+//     }
+//     return data;
+//   } catch (error) {
+//     return error;
+//   }
+// }
+
+export const eliminarPost = async (id, token) => {
   const options = {
-    method: "POST",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify(token),
-  }
+  };
 
   try {
-    const response = await fetch(`${root}posts`, options)
+    const response = await fetch(`${root}posts/${id}`, options);
     const data = await response.json();
-
     if (!data.success) {
       throw new Error(data.message);
     }

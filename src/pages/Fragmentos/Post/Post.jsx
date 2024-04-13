@@ -1,7 +1,7 @@
 
 import "./Post.css"
 import React, { useEffect, useState } from 'react'
-import { ListarMisPosts } from "../../../services/rootss";
+import { eliminarPost, ListarMisPosts } from "../../../services/rootss";
 import { useSelector } from "react-redux";
 import { userData } from "../../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +40,16 @@ export const Post = () => {
         }
         misPosts();
     }, [token])
+
+    const delet = async (_id) => {
+        try {
+                
+            const elimina = await eliminarPost(_id, token);
+            console.log("Eliminación del post:", elimina);
+        } catch (error) {
+            console.log("Error al eliminar el post:", error);
+        }
+    }
     return (
         <>
             <div className='postContainer'>
@@ -50,13 +60,13 @@ export const Post = () => {
                             className={activeTab === "Posts" ? "tablinks active" : "tablinks"}
                             onClick={() => openCard("Posts")}
                         >
-                            <i class="bi bi-grid-3x3"></i>
+                            <i className="bi bi-grid-3x3"></i>
                         </button>
                         <button
                             className={activeTab === "Paris" ? "tablinks active" : "tablinks"}
                             onClick={() => openCard("Paris")}
                         >
-                            <i class="bi bi-bookmarks"></i>
+                            <i className="bi bi-bookmarks"></i>
                         </button>
                         <button
                             className={activeTab === "Tokyo" ? "tablinks active" : "tablinks"}
@@ -83,6 +93,7 @@ export const Post = () => {
                                                     <button className="btn btn-primary">Go somewhere</button>
                                                     <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
                                                     <label htmlFor="">0</label>
+                                                    <button id="delete" className="btn btn-danger" onClick={()=>delet(post._id)}><i className="bi bi-trash"></i></button>
                                                 </div>
                                             </div>
                                         </div>

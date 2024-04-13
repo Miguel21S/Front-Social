@@ -42,6 +42,10 @@ div > button{
     border-color: red;
 }
 
+#delete{
+margin-left: 10px;
+}
+
 #gutters {
     padding: 0;
 }

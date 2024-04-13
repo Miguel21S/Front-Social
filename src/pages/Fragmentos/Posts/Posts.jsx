@@ -1,11 +1,11 @@
 
 import "./Posts.css";
-import { userData } from "../../../app/slices/userSlice";
-import React, { useEffect, useState } from "react";
-import { ListaDePosts } from "../../../services/rootss";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { CreatePost } from "../CrearPost/CrearPost";
+import { ListaDePosts } from "../../../services/rootss";
+import { CrearPostes } from "../CrearPostes/CrearPostes";
+import { userData } from "../../../app/slices/userSlice";
 
 export const Posts = () => {
     const navigate = useNavigate();
@@ -101,7 +101,7 @@ export const Posts = () => {
                                 {crearPost && (
                                     <div className="popup">
                                         <button onClick={crearPostTogglePopup}><i className="bi bi-file-excel"></i></button>
-                                        <CreatePost />
+                                        <CrearPostes /> 
                                     </div>
                                 )}
                             </div>

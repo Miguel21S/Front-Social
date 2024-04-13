@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from "react";
 import { CInput } from "../../../common/CInput/CInput";
-import { CrearPost } from "../../../services/rootss";
+// import { CrearPost } from "../../../services/rootss";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userData } from "../../../app/slices/userSlice";
 
 
-export const CreatePost = () => {
+export const CrearPostes = () => {
     const navigate = useNavigate();
 
     const [postear, setPostear] = useState({
@@ -31,26 +32,26 @@ export const CreatePost = () => {
         }));
     }
 
-    const crearNuevoPost = async () => {
-        try {
-            for (let elemento in postear) {
-                if (postear[elemento] === "") {
-                    throw new Error("Todos los campos tienen que estar rellenos");
-                }
-            }
+    // const crearNuevoPost = async () => {
+    //     try {
+    //         for (let elemento in postear) {
+    //             if (postear[elemento] === "") {
+    //                 throw new Error("Todos los campos tienen que estar rellenos");
+    //             }
+    //         }
 
-            const fetched = await CrearPost(token);
-            console.log("POST CREADO CON SUCCESO", fetched)
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    //         const fetched = await CrearPost(token);
+    //         console.log("POST CREADO CON SUCCESO", fetched)
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     return (
         <div className="create-post">
             <h2>Crear un nuevo post</h2>
 
-            <div className="rowl">
+            <div className="row">
                 <label htmlFor="title">Título:</label>
                 <CInput
                     type="title"
@@ -61,14 +62,21 @@ export const CreatePost = () => {
                 />
 
                 <label htmlFor="content">Contenido:</label>
-                <textarea
+                <CInput
+                    type="tests"
+                    name="tests"
+                    placeholder=" tests..."
+                    value={postear.tests || ""}
+                    changeEmit={inputHandler}
+                />
+                {/* <textarea
                     id="content"
                     value={postear.tests}
                     placeholder=" test..."
-                    onChange={(event) => setPostear(event.target.value)}
+                    onChange={(e) => setPostear(e.target.value)}
                     required
-                ></textarea>
-                <button type='button' onClick={crearNuevoPost} className="btn btn-primary">Crear</button>
+                ></textarea> */}
+                {/* <button type='button' onClick={crearNuevoPost} className="btn btn-primary">Crear</button> */}
 
             </div>
         </div>
