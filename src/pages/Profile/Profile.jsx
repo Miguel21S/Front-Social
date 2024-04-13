@@ -18,7 +18,7 @@ export const Profile = () => {
     const [siguidores, setSiguidores] = useState({});
     const [miSeguidores, setMiSeguidores] = useState(false);
     const [seguidosPorMi, setSeguidosPorMi] = useState(false);
-
+    
     const navigate = useNavigate();
     //Instancia de Redux para escritura
     const dispatch = useDispatch();
@@ -31,6 +31,7 @@ export const Profile = () => {
         setSeguidosPorMi(!seguidosPorMi);
     };
 
+    
     //Conectamos con Redux en modo lectura
     const rdxUser = useSelector(userData);
     const token = rdxUser.credentials.token;

@@ -6,13 +6,15 @@ import { useSelector } from "react-redux";
 import { userData } from "../../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
-
 export const Post = () => {
     const navigate = useNavigate();
-
-    const [activeTab, setActiveTab] = useState("Posts");
+    const [editarPost, setEditarPost] = useState(false);
     const [posts, setPosts] = useState([]);
+    const [activeTab, setActiveTab] = useState("Posts");
 
+    const editarPostTogglePopup = () => {
+        setEditarPost(!editarPost);
+    }
     const openCard = (cardName) => {
         setActiveTab(cardName);
     };
@@ -41,19 +43,31 @@ export const Post = () => {
         misPosts();
     }, [token])
 
+    /////////////////    ELIMINAR MI POSTS     ///////////////////////
     const delet = async (_id) => {
         try {
-                
+
             const elimina = await eliminarPost(_id, token);
             console.log("Eliminación del post:", elimina);
         } catch (error) {
             console.log("Error al eliminar el post:", error);
         }
     }
+
     return (
         <>
             <div className='postContainer'>
                 <div className="profileMisPostes">
+
+                    <div id="Paris" className="tabcontent" style={{ display: activeTab === "Paris" ? "block" : "none" }}>
+                        <h3>***T****</h3>
+                        <p>--------------------.</p>
+                    </div>
+
+                    <div id="Tokyo" className="tabcontent" style={{ display: activeTab === "Tokyo" ? "block" : "none" }}>
+                        <h3>***K***</h3>
+                        <p>------------------.</p>
+                    </div>
 
                     <div className="tab">
                         <button
@@ -90,10 +104,19 @@ export const Post = () => {
                                                     <p className="card-text">{post.title}</p>
                                                     <p className="card-text">{post.tests.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
 
-                                                    <button className="btn btn-primary">Go somewhere</button>
+                                                    
+                                                        <button id="mas" onClick={editarPostTogglePopup} className="btn btn-primary">Mas...</button>
+                                                        {editarPost && (
+                                                            <div className="popup">
+                                                                <button onClick={editarPostTogglePopup}></button>
+                                                           
+                                                            </div>
+                                                        )}
+                                                    
+
                                                     <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
-                                                    <label htmlFor="">0</label>
-                                                    <button id="delete" className="btn btn-danger" onClick={()=>delet(post._id)}><i className="bi bi-trash"></i></button>
+                                                    <label >0</label>
+                                                    <button id="delete" className="btn btn-danger" onClick={() => delet(post._id)}><i className="bi bi-trash"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,19 +124,8 @@ export const Post = () => {
                                 ) : (
                                     <div>No hay posts disponibles</div>
                                 )
-
                             }
                         </div>
-                    </div>
-
-                    <div id="Paris" className="tabcontent" style={{ display: activeTab === "Paris" ? "block" : "none" }}>
-                        <h3>***T****</h3>
-                        <p>--------------------.</p>
-                    </div>
-
-                    <div id="Tokyo" className="tabcontent" style={{ display: activeTab === "Tokyo" ? "block" : "none" }}>
-                        <h3>***K***</h3>
-                        <p>------------------.</p>
                     </div>
                 </div>
             </div>

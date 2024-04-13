@@ -25,6 +25,7 @@ export const RegisterUser = async (user) => {
   }
 }
 
+
 ////////////////  RUTA LOGIN  /////////////////////////////
 export const loginService = async (user) => {
   const options = {
@@ -195,33 +196,55 @@ export const ListaDeMisSeguidores = async (token) => {
 }
 
 ////////////////  RUTA DE CREAR POST  /////////////////////////////
-// export const CrearPost = async (token) => {
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(token),
-//   };
-//   console.log(token)
-//   try {
-//     // console.log("root:", `${root}posts`, options)
+export const CrearPost = async (data, token) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  };
+ 
+  try {
+    const response = await fetch(`${root}posts`, options)
+    const data = await response.json();
 
-//     const response = await fetch(`${root}posts`, options)
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
 
-//     // console.log("RESPONSE", response)
+////////////////  RUTA DE EDITAR POST  /////////////////////////////
+export const UpdatePost = async (data, token) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  };
+console.log("TOKEN: "+ token +"/ dATA: "+ data)
+  try {
+    const response = await fetch(`${root}posts/${_id}`, options);
+    const data = await response.json();
+console.log("SOY DATA: ", data);
+    if (!data.success) {
+      throw new Error(data.message);
+    }
 
-//     const data = await response.json();
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
 
-//     if (!data.success) {
-//       throw new Error(data.message);
-//     }
-//     return data;
-//   } catch (error) {
-//     return error;
-//   }
-// }
-
+////////////////  RUTA DE ELIMINAR POST  /////////////////////////////
 export const eliminarPost = async (id, token) => {
   const options = {
     method: "DELETE",
