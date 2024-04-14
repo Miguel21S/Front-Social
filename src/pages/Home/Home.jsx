@@ -79,24 +79,10 @@ export const Home = () => {
           </div>
 
         </div>
-        {/* <div className="row"> */}
-
-          {/* <div className="col-3">
-            <div className="menuPost-Lateral">
-              <MenuPost />
-            </div>
-          </div> */}
-
-          {/* <div className="col-9"> */}
-            <div className="todosPostes">
-              <Posts />
-            </div>
-          </div>
-
-        {/* </div>
-
-      </div> */}
-
+        <div className="todosPostes">
+          <Posts />
+        </div>
+      </div>
     </>
   );
 };

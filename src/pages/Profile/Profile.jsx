@@ -3,37 +3,77 @@ import "./Profile.css";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom"
-// import { useEffect } from "react";
-
-// import { profile } from "../../app/slices/cartSlice";
-import { useDispatch } from 'react-redux';
-import { ListaDeMisSeguidores, ListaDeSiguiendo, ListarMisPosts, MyPerfil } from "../../services/rootss";
+import { ActualizarMiPerfil, ListaDeMisSeguidores, ListaDeSiguiendo, ListarMisPosts, MyPerfil } from "../../services/rootss";
 import { useEffect, useState } from "react";
 import { Post } from "../Fragmentos/Post/Post"
+import { CInput } from "../../common/CInput/CInput";
 
 export const Profile = () => {
+    const navigate = useNavigate();
 
-    const [perfi, setPerfil] = useState({
-        name: "",
-        email: "",
-        userId: "",
-        newPassword: ""
-});
     const [siguiendo, setSiguiendo] = useState({});
     const [siguidores, setSiguidores] = useState({});
     const [miSeguidores, setMiSeguidores] = useState(false);
     const [seguidosPorMi, setSeguidosPorMi] = useState(false);
+    const [editarUsuario, setEditarUsuario] = useState(false);
     const [postsCount, setPostsCount] = useState(0);
     const [seguidoresCount, setseguidoresCount] = useState(0);
-    // const [editePerfil, setEditedPerfil] = useState({
-    //     name: "",
-    //     email: "",
-    //     postId: "",
-    // });
-    
-    const navigate = useNavigate();
+
+    const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+
+    const [perfi, setPerfil] = useState([]);
+    const [editePerfil, setEditePerfil] = useState({
+        name: "",
+        email: ""
+    });
+
     //Instancia de Redux para escritura
-    const dispatch = useDispatch();
+    //Conectamos con Redux en modo lectura
+    const rdxUser = useSelector(userData);
+    const token = rdxUser.credentials.token;
+    useEffect(() => {
+        if (!rdxUser.credentials.token) {
+            navigate("/")
+        }
+    }, [rdxUser])
+
+    const inputHandler = (e) => {
+        const { name, value } = e.target;
+        setEditePerfil((prevProfile) => ({
+            ...prevProfile,
+            [name]: value
+        }));
+    }
+    ////////////////////////     FUNCIÓN PARA ABRIR POPUP DE EDITAR       /////////////////////////////////
+    const editarUsuarioTogglePopup = (usuario) => {
+        setUsuarioSeleccionado(usuario);
+        setEditePerfil({
+            name: usuario.name,
+            email: usuario.email
+        });
+        setEditarUsuario(true);
+    }
+
+    const cerrarPopupEdicion = () => {
+        setEditarUsuario(false);
+    }
+
+    const actualicarPerfilUsuario = async () => {
+        try {
+            const editar = await ActualizarMiPerfil(editePerfil, token);
+            setEditePerfil({
+                name: usuarioSeleccionado.name,
+                email: usuarioSeleccionado.email
+            })
+            console.log("EDITADO: ", editar);
+        } catch (error) {
+            console.log("Error al editar sus datos:", error);
+        }
+    }
+
+    // const editarUsuarioTogglePopup = () => {
+    //     setUsuario(!usuario);
+    // };
 
     const miSeguidoresTogglePopup = () => {
         setMiSeguidores(!miSeguidores);
@@ -43,10 +83,6 @@ export const Profile = () => {
         setSeguidosPorMi(!seguidosPorMi);
     };
 
-    
-    //Conectamos con Redux en modo lectura
-    const rdxUser = useSelector(userData);
-    const token = rdxUser.credentials.token;
 
     ////////////////////    MÉTODO QUE LISTA MIS POSTS     ///////////////////////
     useEffect(() => {
@@ -78,19 +114,17 @@ export const Profile = () => {
         listaSeguidore();
     }, [token]);
 
-
-    useEffect(() => {
-        if (!rdxUser.credentials.token) {
-            navigate("/")
-        }
-    }, [rdxUser])
-
     /////////////////    MI PERFIL     ///////////////////////
     useEffect(() => {
         const miPerfil = async () => {
             try {
                 const perfil = await MyPerfil(token);
                 setPerfil(perfil.data);
+
+                setEditePerfil({
+                    name: perfil.data.name,
+                    email: perfil.data.email
+                });
                 console.log("QUE PASSA PERFIL DIME", perfil)
 
             } catch (error) {
@@ -101,7 +135,6 @@ export const Profile = () => {
     }, [token]);
 
     /////////////////    LISTAR MIS USUARIOS QUE SIGO     ///////////////////////
-
     useEffect(() => {
         const losQeSigo = async () => {
             try {
@@ -115,7 +148,7 @@ export const Profile = () => {
         losQeSigo();
     }, [token])
 
-    /////////////////    LISTAR MIS USUARIOS QUE SIGO     ///////////////////////
+    /////////////////    LISTAR DE MIS SEGUIDORES     ///////////////////////
     useEffect(() => {
         const misSeguidores = async () => {
             try {
@@ -140,7 +173,32 @@ export const Profile = () => {
                                     <div key={perf._id}>
                                         <p>Usuario: {perf.name}</p>
                                         <p>Email: {perf.email}</p>
-                                        <button id="editar" className="btn btn-warning" onClick={() => editarPostTogglePopup(post)}>Editar<i id="btnIcon" className="bi bi-feather"></i></button>
+                                        <button id="editar" className="btn btn-warning" onClick={() => editarUsuarioTogglePopup(perf)}>Editar<i id="btnIcon" className="bi bi-feather"></i></button>
+                                        {
+                                            editarUsuario && usuarioSeleccionado && (
+                                                <div className="popup">
+                                                    <button id="cerrar" onClick={() => cerrarPopupEdicion()}><i className="bi bi-file-excel"></i></button>
+                                                    <CInput
+                                                        type="name"
+                                                        name="name"
+                                                        placeholder=" name..."
+                                                        value={editePerfil.name || ""}
+                                                        changeEmit={inputHandler}
+                                                    />
+
+                                                    <CInput
+                                                        type="email"
+                                                        name="email"
+                                                        placeholder=" enail..."
+                                                        value={editePerfil.email || ""}
+                                                        changeEmit={inputHandler}
+                                                    />
+                                                    <button type='button' id="btn-salvar" onClick={actualicarPerfilUsuario} className="btn btn-primary">Salvar<i id="btnIcon" className="bi bi-check2"></i></button>
+                                                </div>
+
+
+                                            )
+                                        }
                                     </div>
                                 ))
                             ) : (

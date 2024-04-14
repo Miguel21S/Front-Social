@@ -49,6 +49,7 @@ export const Post = () => {
         }));
     };
 
+    ////////////////////////     FUNCIÓN PARA ABRIR POPUP DE EDITAR       /////////////////////////////////
     const editarPostTogglePopup = (post) => {
         setPostSeleccionado(post);
         setEditedPost({
@@ -62,7 +63,6 @@ export const Post = () => {
     const cerrarPopupEdicion = () => {
         setEditarPost(false);
     }
-
 
     const actualizarPost = async (_id) => {
         try {
