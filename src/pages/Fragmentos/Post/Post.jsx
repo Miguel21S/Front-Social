@@ -70,19 +70,7 @@ export const Post = () => {
 
             const editaPost = await UpdatePost(_id, editedPost, token);
             setEditedPost(editaPost);
-            console.log("POST EDITADO CON SUCCESO", editaPost);
-            console.log("ID DEL POST", _id);
-            // const { _id, ...postData } = postSeleccionado;
-            // await UpdatePost(_id, postData, token);
-            // setPosts((prevPosts) => prevPosts.map((post) => {
-            //     if (post._id === _id) {
-            //         return {
-            //             ...post,
-            //             ...editedPost
-            //         };
-            //     }
-            //     return post;
-            // }));
+        
             cerrarPopupEdicion();
         } catch (error) {
             console.log("Error al actualizar el post:", error);
@@ -107,8 +95,7 @@ export const Post = () => {
                     {editarPost && (
                         <div className="popup">
                             <button id="cerrar" onClick={() => cerrarPopupEdicion(editedPost._id)}><i className="bi bi-file-excel"></i></button>
-                            {/* <EditarPostes post={postSeleccionado} /> */}
-
+                
                             <CInput
                                 type="title"
                                 name="title"

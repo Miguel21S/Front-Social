@@ -40,7 +40,7 @@ export const Header = () => {
     <div className="header-design">
       <div className="header-wrapper">
         <div className="header-left">
-          <CLink path="/" title="Home" />
+          <CLink path="/" title="Conhecer-te" />
         </div>
 
         <div className="header-center">
@@ -70,13 +70,13 @@ export const Header = () => {
                 className="out-design"
                 onClick={() => dispatch(logout({ credentials: "" }))}
               >
-                log out
+                Salir
               </div>
             </div>
           ) : (
             <div className="navigator-design">
-              <CLink path="/login" title="Login" />
-              <CLink path="/register" title="Register" />
+              <CLink path="/login" title="Iniciar Sensión" />
+              <CLink path="/register" title="Registrarse" />
             </div>
           )}
         </div>

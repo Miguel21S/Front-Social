@@ -60,9 +60,9 @@ export const Home = () => {
                     miPerfil?.length > 0 ? (
 
                       miPerfil.map((perfil) => (
-                        <div className="pe" key={perfil._id}>
+                        <div className="perfilUsuario" key={perfil._id}>
                           <p>{perfil.name}</p>
-                          <CLink path="/profile" title="Profile" />
+                          <CLink path="/profile" title="Perfil" />
                         </div>
                       ))
                     ) : (

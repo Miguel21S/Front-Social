@@ -68,9 +68,11 @@ export const CrearPostes = () => {
                     value={postear.tests || ""}
                     changeEmit={inputHandler}
                 />
+
                 {/* <textarea
-                    id="content"
-                    value={postear.tests}
+                    type="tests"
+                    name="tests"
+                    value={postear.tests || ""}
                     placeholder=" test..."
                     onChange={(e) => setPostear(e.target.value)}
                     required

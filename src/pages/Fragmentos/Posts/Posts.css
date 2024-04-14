@@ -1,5 +1,4 @@
-
-.postContainer{
+.postContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,37 +7,37 @@
     margin: 0;
 }
 
-.tab > button{
+.tab>button {
     margin: 10px;
 }
 
-div > button{
+div>button {
     background-color: transparent;
     border: none;
     color: black;
 }
 
-.btn-primary{
+.btn-primary {
     margin-right: 10px;
 }
 
-.bi-heart{
+.bi-heart {
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#like{
+#like {
     background-color: transparent;
 
 }
 
-.bi-heart:hover{
+.bi-heart:hover {
     background-color: red;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     border-color: red;
 }
 
@@ -47,22 +46,33 @@ div > button{
 }
 
 
-.profileMisPostes{
+.profileMisPostes {
     width: 100%;
-    
+
 }
 
-#posts-latera{
+#posts-latera {
     background-color: blue;
-   
+
 }
 
-#menu-latera{
+#menu-latera {
     background-color: rgb(0, 0, 0);
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
 }
 
-.crearPos{
+.popup, .linkButton:hover {
+    height: 8vh;
+    width: 8vw;
+    cursor: pointer;
+    background-color: rgb(104, 95, 95);
+    border-radius: 5px;
+    text-align: end;
+}
+
+.crearPos {
     color: aliceblue;
 }

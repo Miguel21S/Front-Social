@@ -230,13 +230,9 @@ export const UpdatePost = async (postId, data, token) => {
     body: JSON.stringify(data)
   };
 
-console.log("TOKEN: "+ token +"/ dATA: "+ data)
-
   try {
     const response = await fetch(`${root}posts/${postId}`, options);
     const data = await response.json();
-    console.log("ID DEL POST EN LA RUTA", postId);
-console.log("SOY DATA: ", data);
 
     if (!data.success) {
       throw new Error(data.message);

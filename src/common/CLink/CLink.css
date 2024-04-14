@@ -12,6 +12,6 @@
 .clink-design:hover {
 
     transition: 0.3s;
-    color: black;
+    /* color: black; */
     cursor: pointer;
 }
