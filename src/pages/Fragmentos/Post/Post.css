@@ -8,10 +8,6 @@
     margin: 0;
 }
 
-.tab > button{
-    margin: 10px;
-}
-
 div > button{
     background-color: transparent;
     border: none;

@@ -95,7 +95,6 @@ export const Posts = () => {
                                 ) : (
                                     <div>No hay posts disponibles</div>
                                 )
-
                             }
 
                             {/* <div onClick={() => changePage(false)}>Prev</div>

@@ -1,0 +1,31 @@
+
+
+.container-principal {
+    min-height: 90vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.profile-design {
+    /* height: 88vh;
+    width: 100vw; */
+    padding: 2em 1em;
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: rgb(16, 185, 84);
+
+}
+
+.tablaEditable{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+align-items: center;
+}

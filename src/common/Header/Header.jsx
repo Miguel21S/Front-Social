@@ -3,16 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "./Header.css";
 import { useState } from "react";
 import { CLink } from "../CLink/CLink";
-
 //RDX
-
 import { useSelector, useDispatch } from "react-redux";
 import { userData, logout } from "../../app/slices/userSlice";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { useEffect } from "react";
 import { CInput } from "../CInput/CInput";
 
-export const Header = () => {
+export const Header = ({ user }) => {
+  const isSuperAdmin = (user && user?.role === 'superAdmin');
+
   //Instancia de conexion a modo lectura
   const rdxUser = useSelector(userData);
 
@@ -72,6 +72,10 @@ export const Header = () => {
               >
                 Salir
               </div>
+              {
+                <CLink path="/gestionusuarios" title="Usuarios"> Lista de Usuarios</CLink>
+              }
+
             </div>
           ) : (
             <div className="navigator-design">

@@ -7,10 +7,6 @@
     margin: 0;
 }
 
-.tab>button {
-    margin: 10px;
-}
-
 div>button {
     background-color: transparent;
     border: none;
@@ -41,11 +37,6 @@ div>button {
     border-color: red;
 }
 
-#gutters {
-    padding: 0;
-}
-
-
 .profileMisPostes {
     width: 100%;
 
@@ -56,12 +47,12 @@ div>button {
 
 }
 
-#menu-derecha{
- background-color: rgb(70, 42, 96);
- display: flex;
+#menu-derecha {
+    background-color: rgb(70, 42, 96);
+    display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: end;  
+    align-items: end;
 }
 
 #menu-izquierdo {
@@ -70,20 +61,23 @@ div>button {
     flex-direction: column;
     justify-content: start;
     align-items: self-start;
-  
+
 }
 
-.containerPopup-Button{
+.containerPopup-Button {
     margin: 8px;
-} 
-#cerra{
+}
+
+#cerra {
     color: rgb(255, 255, 255);
 }
+
 .linkButton {
     margin-top: 10px;
 }
 
-.crearPos:hover, .linkButton:hover {
+.crearPos:hover,
+.linkButton:hover {
     height: 8vh;
     width: 8vw;
     cursor: pointer;
@@ -147,4 +141,3 @@ div>button {
     
     background-color: blue;
 } */
-

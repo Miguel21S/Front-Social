@@ -1,3 +1,4 @@
+
 import "./Login.css";
 import { useState } from "react";
 import { CInput } from "../../common/CInput/CInput";
@@ -5,7 +6,6 @@ import { loginService } from "../../services/rootss";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 //Redux
-
 import { login } from "../../app/slices/userSlice";
 import { useDispatch } from "react-redux";
 
@@ -32,13 +32,18 @@ export const Login = () => {
 
     if (fetched.token) {
       const decodificado = decodeToken(fetched.token);
-
       const passport = {
         token: fetched.token,
         user: decodificado,
       };
 
       dispatch(login({ credentials: passport }));
+
+      // if (decodificado.role === "superAdmin") {
+      //   navigate("/admin-menu");
+      // } else {
+        
+      // }
 
       setTimeout(() => {
         navigate("/")
@@ -68,13 +73,10 @@ export const Login = () => {
           <button className="btn btn-success" onClick={loginMe}>Login</button>
 
           <p>¿Aún no tienes una cuenta?</p>
-          <label  onClick={ ()=> navigate("/register") }>Registrarse</label>
+          <label onClick={() => navigate("/register")}>Registrarse</label>
         </div>
       </div>
 
     </>
-
-
-
   );
 };

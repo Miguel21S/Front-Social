@@ -58,6 +58,7 @@ export const Profile = () => {
         setEditarUsuario(false);
     }
 
+    ////////////////////////////////////       MÉTODO ACTUALIZAR PERFIL    //////////////////////////////////////////
     const actualicarPerfilUsuario = async () => {
         try {
             const editar = await ActualizarMiPerfil(editePerfil, token);
@@ -93,7 +94,7 @@ export const Profile = () => {
                 setPostsCount(postes)
                 console.log("QUE PASSA todos POST DIME", postes)
             } catch (error) {
-                console.log("Error en fetching users:", error);
+                console.log("Error ", error);
             }
         }
         listaPosts();
@@ -217,7 +218,7 @@ export const Profile = () => {
                                     <div className="popup">
                                         <button onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
                                         <h2>Vista Reducida SEGUIDORES</h2>
-                                        {/* Contenido de la vista reducida */}
+                                        
                                     </div>
                                 )}
                             </div>
@@ -228,7 +229,7 @@ export const Profile = () => {
                                     <div className="popup">
                                         <button onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>
                                         <h2>Vista Reducida SEGUIDOS</h2>
-                                        {/* Contenido de la vista reducida */}
+                                        
                                     </div>
                                 )}
                             </div>
