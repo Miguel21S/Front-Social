@@ -48,28 +48,28 @@ export const CrearPostes = () => {
 
     return (
         <div className="create-post">
-            <h2>Crear un nuevo post</h2>
 
             <div className="row">
-                <label className="title">Título:</label>
-                <CInput
-                    type="title"
-                    name="title"
-                    placeholder=" title..."
-                    value={postear.title || ""}
-                    changeEmit={inputHandler}
-                />
+                
+                    <label className="title">Título:</label>
+                    <CInput
+                        type="title"
+                        name="title"
+                        placeholder=" title..."
+                        value={postear.title || ""}
+                        changeEmit={inputHandler}
+                    />
 
-                <label className="content">Contenido:</label>
-                <CInput
-                    type="tests"
-                    name="tests"
-                    placeholder=" tests..."
-                    value={postear.tests || ""}
-                    changeEmit={inputHandler}
-                />
+                    <label className="content">Contenido:</label>
+                    <CInput
+                        type="tests"
+                        name="tests"
+                        placeholder=" tests..."
+                        value={postear.tests || ""}
+                        changeEmit={inputHandler}
+                    />
 
-                {/* <textarea
+                    {/* <textarea
                     type="tests"
                     name="tests"
                     value={postear.tests || ""}
@@ -77,8 +77,8 @@ export const CrearPostes = () => {
                     onChange={(e) => setPostear(e.target.value)}
                     required
                 ></textarea> */}
-                <button type='button' onClick={crearNuevoPost} className="btn btn-primary">Crear</button>
-
+                    <button type='button' onClick={crearNuevoPost} className="btn btn-primary">Crear</button>
+              
             </div>
         </div>
     );

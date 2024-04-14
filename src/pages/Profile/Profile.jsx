@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 // import { profile } from "../../app/slices/cartSlice";
 import { useDispatch } from 'react-redux';
-import { ListaDeMisSeguidores, ListaDeSiguiendo, MyPerfil } from "../../services/rootss";
+import { ListaDeMisSeguidores, ListaDeSiguiendo, ListarMisPosts, MyPerfil } from "../../services/rootss";
 import { useEffect, useState } from "react";
 import { Post } from "../Fragmentos/Post/Post"
 
@@ -18,6 +18,8 @@ export const Profile = () => {
     const [siguidores, setSiguidores] = useState({});
     const [miSeguidores, setMiSeguidores] = useState(false);
     const [seguidosPorMi, setSeguidosPorMi] = useState(false);
+    const [postsCount, setPostsCount] = useState(0);
+    const [seguidoresCount, setseguidoresCount] = useState(0);
     
     const navigate = useNavigate();
     //Instancia de Redux para escritura
@@ -35,6 +37,37 @@ export const Profile = () => {
     //Conectamos con Redux en modo lectura
     const rdxUser = useSelector(userData);
     const token = rdxUser.credentials.token;
+
+    ////////////////////    MÉTODO QUE LISTA MIS POSTS     ///////////////////////
+    useEffect(() => {
+        const listaPosts = async () => {
+            try {
+                const postes = await ListarMisPosts(token)
+                // setPages({ previous: postes.data.prev, next: postes.data.next })
+                setPostsCount(postes)
+                console.log("QUE PASSA todos POST DIME", postes)
+            } catch (error) {
+                console.log("Error en fetching users:", error);
+            }
+        }
+        listaPosts();
+    }, [token]);
+
+    ////////////////////    MÉTODO QUE LISTA MIS SEGUIDORES     ///////////////////////
+    useEffect(() => {
+        const listaSeguidore = async () => {
+            try {
+                const seguidorr = await ListaDeMisSeguidores(token)
+                // setPages({ previous: postes.data.prev, next: postes.data.next })
+                setseguidoresCount(seguidorr)
+                console.log("QUE PASSA todos POST DIME", seguidorr)
+            } catch (error) {
+                console.log("Error en fetching users:", error);
+            }
+        }
+        listaSeguidore();
+    }, [token]);
+
 
     useEffect(() => {
         if (!rdxUser.credentials.token) {
@@ -97,9 +130,9 @@ export const Profile = () => {
                                     <div key={perf._id}>
                                         <p>Usuario: {perf.name}</p>
                                         <p>Email: {perf.email}</p>
+                                        <button>Editar</button>
                                     </div>
                                 ))
-
                             ) : (
                                 <p>No hay datos de perfil disponibles</p>
                             )}
@@ -108,10 +141,10 @@ export const Profile = () => {
                         <hr />
                         <div className="profile-right">
 
-                            <div className="profile-posts">Posts 1256.555</div>
+                            <div className="profile-posts">Publicaciones {postsCount.postsCount}</div>
 
                             <div className="containerPopup-Top">
-                                <div onClick={miSeguidoresTogglePopup} className="profile-Seguidores">Seguidores 1256.555</div>
+                                <div onClick={miSeguidoresTogglePopup} className="profile-Seguidores">Seguidores {seguidoresCount.cantFollewer}</div>
                                 {miSeguidores && (
                                     <div className="popup">
                                         <button onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
@@ -133,9 +166,6 @@ export const Profile = () => {
                             </div>
                         </div>
 
-                        {/* <Link to='/'>
-                        <h3 className="profile-myProfile">Profile</h3>
-                    </Link> */}
                     </div>
 
                 </div>

@@ -5,7 +5,6 @@ import { eliminarPost, ListarMisPosts, UpdatePost } from "../../../services/root
 import { useSelector } from "react-redux";
 import { userData } from "../../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { EditarPostes } from "../EditarPostes/EditarPostes";
 import { CInput } from "../../../common/CInput/CInput";
 
 export const Post = () => {
@@ -92,10 +91,10 @@ export const Post = () => {
             <div className='postContainer'>
                 <div className="profileMisPostes">
 
+                    {/* VISTA DE EDITAR POST */}
                     {editarPost && (
                         <div className="popup">
                             <button id="cerrar" onClick={() => cerrarPopupEdicion(editedPost._id)}><i className="bi bi-file-excel"></i></button>
-                
                             <CInput
                                 type="title"
                                 name="title"
@@ -116,7 +115,7 @@ export const Post = () => {
                         </div>
                     )}
 
-                    <h3>Posts</h3>
+                       {/* MIS POSTES EN PERFIL    */}
                     <div className="row">
                         {
                             posts?.length > 0 ? (

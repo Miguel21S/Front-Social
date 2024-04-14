@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { MyPerfil } from "../../services/rootss";
 import { Posts } from "../Fragmentos/Posts/Posts";
 import { CLink } from "../../common/CLink/CLink";
+import { MenuPost } from "../Fragmentos/MenuPost/MenuPost";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -72,23 +73,29 @@ export const Home = () => {
 
                 </div>
 
-                <hr />
-                <div className="profile-right">
-                  <div className="profile-Seguidores">**************</div>
-                  <div className="profile-Siguiendo">**************</div>
-                  <div className="profile-posts">**************</div>
-                </div>
               </div>
 
             </div>
           </div>
 
         </div>
+        {/* <div className="row"> */}
 
-        <div className="todosPostes">
-          <Posts />
-        </div>
-      </div>
+          {/* <div className="col-3">
+            <div className="menuPost-Lateral">
+              <MenuPost />
+            </div>
+          </div> */}
+
+          {/* <div className="col-9"> */}
+            <div className="todosPostes">
+              <Posts />
+            </div>
+          </div>
+
+        {/* </div>
+
+      </div> */}
 
     </>
   );

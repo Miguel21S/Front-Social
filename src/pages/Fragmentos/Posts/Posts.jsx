@@ -7,6 +7,7 @@ import { ListaDePosts } from "../../../services/rootss";
 import { CrearPostes } from "../CrearPostes/CrearPostes";
 import { userData } from "../../../app/slices/userSlice";
 import { CLink } from "../../../common/CLink/CLink";
+import { MenuPost } from "../MenuPost/MenuPost";
 
 export const Posts = () => {
     const navigate = useNavigate();
@@ -66,7 +67,13 @@ export const Posts = () => {
                 <div className="profileMisPostes">
                     <div id="postColunas" className="row">
 
-                        <div id="posts-latera" className="col-9">
+                        <div id="menu-izquierdo" className="col-3">
+                            <div className="containerPopup-Button">
+                                <MenuPost />
+                            </div>
+                        </div>
+
+                        <div id="posts-centro" className="col-6">
                             {
                                 posts?.length > 0 ? (
                                     posts.map((post) => (
@@ -96,18 +103,18 @@ export const Posts = () => {
 
                         </div>
 
-                        <div id="menu-latera" className="col-3">
+                        <div id="menu-derecha" className="col-3">
                             <div className="containerPopup-Button">
                                 <button onClick={crearPostTogglePopup} className="crearPos"><i className="bi bi-building-fill-add"></i>Crear</button>
                                 {crearPost && (
                                     <div className="popup">
-                                        <button onClick={crearPostTogglePopup}><i className="bi bi-file-excel"></i> </button>
+                                        <button id="cerra" onClick={crearPostTogglePopup}><i className="bi bi-file-excel"></i> </button>
                                         <CrearPostes />
                                     </div>
                                 )}
                             </div>
                             <div className="linkButton">
-                            <CLink id="linkPerfil" path="/profile" title="Perfil" />
+                                <CLink id="linkPerfil" path="/profile" title="Perfil" />
                             </div>
                         </div>
                     </div>

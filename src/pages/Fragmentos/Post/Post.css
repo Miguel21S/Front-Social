@@ -61,6 +61,10 @@ div > button{
     background-color: black;
 }
 
+#cerrar{
+color: white;
+}
+
 textarea{
     height: 40vh;
     width: 33vw;

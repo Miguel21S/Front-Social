@@ -1,0 +1,11 @@
+
+.profile-Seguidores, .profile-Siguiendo, .profile-posts{
+    color: white;
+}
+.profile-Seguidores .profile-Siguiendo{
+    height: 8vh;
+    width: 8vw;
+    background-color: rgb(200, 190, 190);
+    border-radius: 5px;
+   
+}
