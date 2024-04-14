@@ -13,13 +13,23 @@ import { Post } from "../Fragmentos/Post/Post"
 
 export const Profile = () => {
 
-    const [perfi, setPerfil] = useState({});
+    const [perfi, setPerfil] = useState({
+        name: "",
+        email: "",
+        userId: "",
+        newPassword: ""
+});
     const [siguiendo, setSiguiendo] = useState({});
     const [siguidores, setSiguidores] = useState({});
     const [miSeguidores, setMiSeguidores] = useState(false);
     const [seguidosPorMi, setSeguidosPorMi] = useState(false);
     const [postsCount, setPostsCount] = useState(0);
     const [seguidoresCount, setseguidoresCount] = useState(0);
+    // const [editePerfil, setEditedPerfil] = useState({
+    //     name: "",
+    //     email: "",
+    //     postId: "",
+    // });
     
     const navigate = useNavigate();
     //Instancia de Redux para escritura
@@ -130,7 +140,7 @@ export const Profile = () => {
                                     <div key={perf._id}>
                                         <p>Usuario: {perf.name}</p>
                                         <p>Email: {perf.email}</p>
-                                        <button>Editar</button>
+                                        <button id="editar" className="btn btn-warning" onClick={() => editarPostTogglePopup(post)}>Editar<i id="btnIcon" className="bi bi-feather"></i></button>
                                     </div>
                                 ))
                             ) : (
