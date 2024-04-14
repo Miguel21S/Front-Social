@@ -31,7 +31,6 @@ div > button{
 
 #like{
     background-color: transparent;
-
 }
 
 .bi-heart:hover{
@@ -42,10 +41,41 @@ div > button{
     border-color: red;
 }
 
-#delete{
-margin-left: 10px;
+#delete, #btnIcon, #like{
+   margin: 3px;
 }
 
 #gutters {
     padding: 0;
+}
+
+.popup{
+    height: 70vh;
+    width: 60vw;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: black;
+}
+
+textarea{
+    height: 40vh;
+    width: 33vw;
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: none;
+}
+
+#btn-salvar{
+    height: 5vh;
+    width: 10vw;
+    margin-top: 15px;
+}
+
+#btnIcon{
+    margin-left: 8px;
 }

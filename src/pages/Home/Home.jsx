@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyPerfil } from "../../services/rootss";
 import { Posts } from "../Fragmentos/Posts/Posts";
+import { CLink } from "../../common/CLink/CLink";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ export const Home = () => {
                       miPerfil.map((perfil) => (
                         <div className="pe" key={perfil._id}>
                           <p>{perfil.name}</p>
+                          <CLink path="/profile" title="Profile" />
                         </div>
                       ))
                     ) : (

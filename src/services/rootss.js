@@ -220,7 +220,7 @@ export const CrearPost = async (data, token) => {
 }
 
 ////////////////  RUTA DE EDITAR POST  /////////////////////////////
-export const UpdatePost = async (data, token) => {
+export const UpdatePost = async (postId, data, token) => {
   const options = {
     method: "PUT",
     headers: {
@@ -229,11 +229,15 @@ export const UpdatePost = async (data, token) => {
     },
     body: JSON.stringify(data)
   };
+
 console.log("TOKEN: "+ token +"/ dATA: "+ data)
+
   try {
-    const response = await fetch(`${root}posts/${_id}`, options);
+    const response = await fetch(`${root}posts/${postId}`, options);
     const data = await response.json();
+    console.log("ID DEL POST EN LA RUTA", postId);
 console.log("SOY DATA: ", data);
+
     if (!data.success) {
       throw new Error(data.message);
     }
