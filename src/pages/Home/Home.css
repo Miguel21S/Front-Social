@@ -9,9 +9,7 @@
     align-items: center;
     flex-direction: column;
     overflow-x: hidden;
-    background-color: aqua;
-    
-
+    background-color: rgb(0, 0, 0);
 }
 /* Ejemplo de ajuste de tamaño para la pantalla */
 .home-top {

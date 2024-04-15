@@ -19,7 +19,7 @@
     align-items: center;
     flex-direction: column;
     overflow-x: hidden;
-    background-color: rgb(16, 185, 84);
+    background-color: rgb(0, 0, 0);
 
 }
 
@@ -29,7 +29,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    background-color: chartreuse;
+    background-color: rgb(0, 0, 0);
 }
 
 .profile-left {
@@ -41,7 +41,7 @@
     align-items: center;
     margin: 0px;
     padding: 2px;
-    background-color: rgb(201, 114, 34);
+    background-color: rgb(0, 0, 0);
 }
 
 
@@ -52,7 +52,8 @@
     align-items: center;
     margin: 0px;
     padding: 2px;
-    background-color: black;
+    background-color: rgb(5, 5, 5);
+    border: 1px solid #bdb9b9;
     color: white;
 }
 
@@ -73,7 +74,7 @@
 }
 
 .profileMisPostes {
-    background-color: rgb(239, 239, 240);
+    background-color: rgb(6, 6, 6);
     min-height: 59vh;
 }
 

@@ -224,7 +224,7 @@ export const Profile = () => {
                             </div>
 
                             <div className="containerPopup-Button">
-                                <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo 1256.555</div>
+                                <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo {siguiendo.cantFollowin}</div>
                                 {seguidosPorMi && (
                                     <div className="popup">
                                         <button onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>

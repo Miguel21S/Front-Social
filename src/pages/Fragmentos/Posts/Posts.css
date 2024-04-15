@@ -43,16 +43,21 @@ div>button {
 }
 
 #posts-centro {
-    background-color: blue;
+    background-color: rgb(6, 182, 79);
+    border-left: 1px solid #bdb9b9;
+    border-top: 1px solid #bdb9b9;
+
 
 }
 
 #menu-derecha {
-    background-color: rgb(70, 42, 96);
+    background-color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: end;
+    border-left: 1px solid #bdb9b9;
+    border-top: 1px solid #bdb9b9;
 }
 
 #menu-izquierdo {
@@ -61,6 +66,8 @@ div>button {
     flex-direction: column;
     justify-content: start;
     align-items: self-start;
+    border-top: 1px solid #bdb9b9;
+
 
 }
 
@@ -69,7 +76,7 @@ div>button {
 }
 
 #cerra {
-    color: rgb(255, 255, 255);
+    color: rgb(248, 248, 248);
 }
 
 .linkButton {

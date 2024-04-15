@@ -9,6 +9,7 @@ import { ListarUsuarios } from '../../services/rootss';
 export const GestionUsuarios = () => {
     const navigate = useNavigate();
     const [usuariosSistema, setUsuariosSistema] = useState({});
+    const [editandoUsuarios, setEditandoUsuarios] = useState({});
 
     //Instancia de Redux para escritura
     //Conectamos con Redux en modo lectura
@@ -29,6 +30,19 @@ export const GestionUsuarios = () => {
             return usuario;
         });
         setUsuariosSistema(updatedUsuarios);
+        setEditandoUsuarios(prevState => ({ ...prevState, [id]: true }));
+    };
+
+    // Función para guardar los cambios
+    const guardarCambios = (id) => {
+        // Aquí puedes enviar los cambios al servidor o realizar las acciones necesarias
+        setEditandoUsuarios(prevState => ({ ...prevState, [id]: false }));
+    };
+
+    // Función para cancelar la edición
+    const cancelarEdicion = (id) => {
+        // Aquí puedes restaurar los valores originales de la fila
+        setEditandoUsuarios(prevState => ({ ...prevState, [id]: false }));
     };
 
     useEffect(() => {
@@ -62,6 +76,7 @@ export const GestionUsuarios = () => {
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +90,7 @@ export const GestionUsuarios = () => {
                                                         name="name"
                                                         value={usuario.name}
                                                         onChange={e => inputHandler(e, usuario._id)}
+                                                        readOnly={!editandoUsuarios[usuario._id]}
                                                     />
                                                 </td>
                                                 <td>
@@ -83,6 +99,7 @@ export const GestionUsuarios = () => {
                                                         name="email"
                                                         value={usuario.email}
                                                         onChange={e => inputHandler(e, usuario._id)}
+                                                        readOnly={!editandoUsuarios[usuario._id]}
                                                     />
                                                 </td>
                                                 <td>
@@ -91,7 +108,19 @@ export const GestionUsuarios = () => {
                                                         name="role"
                                                         value={usuario.role}
                                                         onChange={e => inputHandler(e, usuario._id)}
+                                                        readOnly={!editandoUsuarios[usuario._id]}
                                                     />
+                                                </td>
+                                                <td>
+                                                    {
+                                                    editandoUsuarios[usuario._id] ? (
+                                                        <>
+                                                            <button onClick={() => guardarCambios(usuario._id)}>Guardar</button>
+                                                            <button onClick={() => cancelarEdicion(usuario._id)}>Cancelar</button>
+                                                        </>
+                                                    ) : (
+                                                        <button onClick={() => setEditandoUsuarios(prevState => ({ ...prevState, [usuario._id]: true }))}>Editar</button>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))
