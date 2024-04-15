@@ -1,0 +1,17 @@
+
+.postContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.tab > button{
+    margin: 10px;
+}
+
+div > button{
+    background-color: transparent;
+    border: none;
+    color: black;
+}

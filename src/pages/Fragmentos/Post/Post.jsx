@@ -28,6 +28,13 @@ export const Post = () => {
         }
     }, [rdxUser])
 
+    const inputHandler = (e) => {
+        setEditedPost((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }));
+    };
+
     /////////////////    LISTAR MIS POSTS     ///////////////////////
     useEffect(() => {
         const misPosts = async () => {
@@ -42,13 +49,6 @@ export const Post = () => {
         misPosts();
     }, [token])
     
-    const inputHandler = (e) => {
-        setEditedPost((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }));
-    };
-
     ////////////////////////     FUNCIÓN PARA ABRIR POPUP DE EDITAR       /////////////////////////////////
     const editarPostTogglePopup = (post) => {
         setPostSeleccionado(post);
