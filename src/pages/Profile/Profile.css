@@ -78,6 +78,9 @@
     min-height: 59vh;
 }
 
+#cerrar{
+    color: white;
+}
 /*          VISTA REDUCIDA                    */
 
 .containerPopup {

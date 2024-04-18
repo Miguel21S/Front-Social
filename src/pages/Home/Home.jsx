@@ -26,10 +26,9 @@ export const Home = () => {
       try {
         const misDatos = await MyPerfil(token);
         setMiPerfil(misDatos.data);
-        console.log("QUE PASSA PERFIL DIME", misDatos.data)
 
       } catch (error) {
-        console.log("Error en fetching profile:", error);
+        
       }
     };
     perfil();

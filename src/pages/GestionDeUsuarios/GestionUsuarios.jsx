@@ -33,13 +33,13 @@ export const GestionUsuarios = () => {
         setEditandoUsuarios(prevState => ({ ...prevState, [id]: true }));
     };
 
-    // Función para guardar los cambios
+    //////////////////       GUARDAR CAMBIO
     const guardarCambios = (id) => {
         // Aquí puedes enviar los cambios al servidor o realizar las acciones necesarias
         setEditandoUsuarios(prevState => ({ ...prevState, [id]: false }));
     };
 
-    // Función para cancelar la edición
+    // CANCELAR
     const cancelarEdicion = (id) => {
         // Aquí puedes restaurar los valores originales de la fila
         setEditandoUsuarios(prevState => ({ ...prevState, [id]: false }));
@@ -57,6 +57,17 @@ export const GestionUsuarios = () => {
         }
         listarUsuariosDeSistema();
     }, [token])
+
+        /////////////////    ELIMINAR MI POSTS     ///////////////////////
+        const deletarUsuario = async (_id) => {
+            try {
+    
+                const elimina = await EliminarUsuario(_id, token);
+                console.log("Eliminación de usuario:", elimina);
+            } catch (error) {
+                console.log("Error al eliminar usuario:", error);
+            }
+        }
 
     return (
         <>
@@ -119,7 +130,8 @@ export const GestionUsuarios = () => {
                                                             <button onClick={() => cancelarEdicion(usuario._id)}>Cancelar</button>
                                                         </>
                                                     ) : (
-                                                        <button onClick={() => setEditandoUsuarios(prevState => ({ ...prevState, [usuario._id]: true }))}>Editar</button>
+                                                        // <button onClick={() => setEditandoUsuarios(prevState => ({ ...prevState, [usuario._id]: true }))}>Editar</button>
+                                                        <button id="delete" className="btn btn-danger" onClick={() => deletarUsuario(usuario._id)}><i id="btnIcon" className="bi bi-trash"></i></button>
                                                     )}
                                                 </td>
                                             </tr>

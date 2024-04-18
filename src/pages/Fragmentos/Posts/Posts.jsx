@@ -41,9 +41,7 @@ export const Posts = () => {
                 const postes = await ListaDePosts(token)
                 // setPages({ previous: postes.data.prev, next: postes.data.next })
                 setPosts(postes.data)
-                console.log("QUE PASSA todos POST DIME", postes)
             } catch (error) {
-                console.log("Error en fetching users:", error);
             }
         }
         listaPosts();

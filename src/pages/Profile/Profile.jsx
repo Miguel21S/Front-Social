@@ -216,9 +216,9 @@ export const Profile = () => {
                                 <div onClick={miSeguidoresTogglePopup} className="profile-Seguidores">Seguidores {seguidoresCount.cantFollewer}</div>
                                 {miSeguidores && (
                                     <div className="popup">
-                                        <button onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
+                                        <button id="cerrar" onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
                                         <h2>Vista Reducida SEGUIDORES</h2>
-                                        
+
                                     </div>
                                 )}
                             </div>
@@ -227,21 +227,20 @@ export const Profile = () => {
                                 <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo {siguiendo.cantFollowin}</div>
                                 {seguidosPorMi && (
                                     <div className="popup">
-                                        <button onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>
+                                        <button id="cerrar" onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>
                                         <h2>Vista Reducida SEGUIDOS</h2>
-                                        
+
                                     </div>
                                 )}
                             </div>
                         </div>
-
                     </div>
-
                 </div>
 
                 <div className="profileMisPostes">
                     <Post />
                 </div>
+
             </div >
         </>
     )

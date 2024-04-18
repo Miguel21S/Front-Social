@@ -9,13 +9,14 @@ import { userData, logout } from "../../app/slices/userSlice";
 import { updateCriteria } from "../../app/slices/searchSlice";
 import { useEffect } from "react";
 import { CInput } from "../CInput/CInput";
+import { useNavigate } from 'react-router-dom';
 
 export const Header = ({ user }) => {
-  const isSuperAdmin = (user && user?.role === 'superAdmin');
 
   //Instancia de conexion a modo lectura
+  const navigate = useNavigate();
   const rdxUser = useSelector(userData);
-
+  // const token = rdxUser?.credentials?.token;
   //Instancia de conexion a modo escritura
   const dispatch = useDispatch();
 
@@ -38,51 +39,98 @@ export const Header = ({ user }) => {
 
   return (
     <div className="header-design">
-      <div className="header-wrapper">
-        <div className="header-left">
-          <CLink path="/" title="Conhecer-te" />
-        </div>
-
-        <div className="header-center">
-          <CInput
-            type="text"
-            name="criteria"
-            placeholder="Buscar usuario..."
-            value={criteria || ""}
-            changeEmit={searchHandler}
-          />
-        </div>
-
+      <div className="header-wrapperr">
         <div className="header-right">
-          {rdxUser?.credentials?.token ? (
-            <div className="navigator-design">
-              <CLink path="/profile" title={rdxUser?.credentials?.user?.name} dest />
+          <div className="row">
 
-              {/* <div class="dropdown">
-              <button class="dropbtn">Dropdown</button>
-              <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-              </div>
-            </div> */}
-              <div
-                className="out-design"
-                onClick={() => dispatch(logout({ credentials: "" }))}
-              >
-                Salir
-              </div>
-              {
-                <CLink path="/gestionusuarios" title="Usuarios"> Lista de Usuarios</CLink>
-              }
+            {
+              rdxUser.credentials?.token ? (
+                <>
+                  {
 
-            </div>
-          ) : (
-            <div className="navigator-design">
-              <CLink path="/login" title="Iniciar Sensión" />
-              <CLink path="/register" title="Registrarse" />
-            </div>
-          )}
+                    rdxUser?.credentials?.user.userRole === "superAdmin" ?
+                      <>
+                        <div className="col">
+                          <div className="header-left">
+                            <CLink id='header-left' path="/" title="Conhecer-te" />
+                          </div>
+                        </div>
+
+                        <div className="col">
+                          <div className="header-center">
+                            <CInput
+                              type="text"
+                              name="criteria"
+                              placeholder="Buscar usuario..."
+                              value={criteria || ""}
+                              changeEmit={searchHandler}
+                            />
+                          </div>
+                        </div>
+
+                        <div id='gestion-salir' className="col">
+                          <CLink path="/gestionusuarios" title="Usuarios"> Lista de Usuarios</CLink>
+                          <div
+                            className="out-design"
+                            onClick={() => dispatch(logout({ credentials: "" }))}
+                          >
+                            <div onClick={() => navigate("/login")}>
+                              Salir
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </>
+                      :
+                      <>
+                        <div className="col">
+                          <div className="header-left">
+                            <CLink path="/" title="Conhecer-te" />
+                          </div>
+                        </div>
+
+                        <div className="col">
+                          <div className="header-center">
+                            <CInput
+                              type="text"
+                              name="criteria"
+                              placeholder="Buscar usuario..."
+                              value={criteria || ""}
+                              changeEmit={searchHandler}
+                            />
+                          </div>
+
+                        </div>
+                        <div className="col">
+                          <div id='gestion-salir'
+                            className="out-design"
+                            onClick={() => dispatch(logout({ credentials: "" }))}
+                          >
+                            <div onClick={() => navigate("/login")}>
+                              Salir
+                            </div>
+
+                          </div>
+                        </div>
+                      </>
+                  }
+                </>
+
+              ) : (
+                <>
+                  <div className="col">
+                    <div className="navigator-design">
+                      <CLink path="/login" title="Iniciar Sensión" />
+                      <CLink path="/register" title="Registrarse" />
+                    </div>
+                  </div>
+                </>
+
+              )
+            }
+
+          </div>
         </div>
       </div>
     </div>

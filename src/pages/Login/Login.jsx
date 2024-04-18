@@ -32,6 +32,8 @@ export const Login = () => {
 
     if (fetched.token) {
       const decodificado = decodeToken(fetched.token);
+      
+      console.log("decodificado: ", decodificado)
       const passport = {
         token: fetched.token,
         user: decodificado,
@@ -39,21 +41,21 @@ export const Login = () => {
 
       dispatch(login({ credentials: passport }));
 
-      // if (decodificado.role === "superAdmin") {
-      //   navigate("/admin-menu");
-      // } else {
-        
-      // }
+      // console.log("ecodificado.roleName: ", decodificado.userRole)
+      if (decodificado.userRole === "superAdmin") {
+        navigate("/gestionusuarios");
+      } else {
+        navigate("/");
+      }
 
-      setTimeout(() => {
-        navigate("/")
-      }, 500)
+      // setTimeout(() => {
+      //   navigate("/")
+      // }, 500)
     }
   };
 
   return (
     <>
-
       <div className="login-design">
         <div className="rowl">
           <CInput
@@ -76,7 +78,6 @@ export const Login = () => {
           <label onClick={() => navigate("/register")}>Registrarse</label>
         </div>
       </div>
-
     </>
   );
 };

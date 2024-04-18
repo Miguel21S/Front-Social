@@ -123,6 +123,27 @@ export const ActualizarMiPerfil = async (data, token) => {
 
 }
 
+//////////////////////   RUTA ELIMINAR USUARIO  (NO FUNCIONA AÚN)   //////////////////////////////
+export const EliminarUsuario = async (id, token) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}users/${id}`, options);
+    const data = await response.json();
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
 ////////////////  RUTA DE TODOS LOS POSTS  /////////////////////////////
 export const ListaDePosts = async (token) => {
   const options = {
@@ -305,6 +326,30 @@ export const eliminarPost = async (id, token) => {
   try {
     const response = await fetch(`${root}posts/${id}`, options);
     const data = await response.json();
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export const Likes = async (_id, token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(`${root}posts/like/tamano/${id}`, options)
+    console.log("RESPONSE: ", response)
+    const data = await response.json();
+    console.log("DATA: ", data)
+
     if (!data.success) {
       throw new Error(data.message);
     }
