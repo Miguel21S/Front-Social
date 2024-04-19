@@ -58,7 +58,7 @@ export const GestionUsuarios = () => {
         listarUsuariosDeSistema();
     }, [token])
 
-        /////////////////    ELIMINAR MI POSTS     ///////////////////////
+        /////////////////    ELIMINAR MI USUARIO     ///////////////////////
         const deletarUsuario = async (_id) => {
             try {
     

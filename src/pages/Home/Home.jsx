@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { MyPerfil } from "../../services/rootss";
 import { Posts } from "../Fragmentos/Posts/Posts";
 import { CLink } from "../../common/CLink/CLink";
-import { MenuPost } from "../Fragmentos/MenuPost/MenuPost";
+// import { MenuPost } from "../Fragmentos/MenuPost/MenuPost";
 
 export const Home = () => {
   const navigate = useNavigate();

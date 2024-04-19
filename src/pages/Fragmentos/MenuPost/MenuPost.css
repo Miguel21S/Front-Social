@@ -1,11 +1,24 @@
 
-.profile-Seguidores, .profile-Siguiendo, .profile-posts{
+.menu-left-Seguidores, .menu-left-Siguiendo, .menu-left-posts{
     color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-.profile-Seguidores .profile-Siguiendo{
+.menu-left-Seguidores .menu-left-Siguiendo{
     height: 8vh;
     width: 8vw;
     background-color: rgb(200, 190, 190);
     border-radius: 5px;
-   
+}
+
+.f{
+    margin-left: 37px;
+}
+.f1{
+    margin-left: 45px;
+}
+.f2{
+    margin-left: 25px;
 }

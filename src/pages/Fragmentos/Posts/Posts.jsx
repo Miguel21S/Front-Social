@@ -85,7 +85,7 @@ export const Posts = () => {
 
                                                     <button className="btn btn-primary">Go somewhere</button>
                                                     <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
-                                                    <label htmlFor="">0</label>
+                                                    <label className="">0</label>
                                                 </div>
                                             </div>
                                         </div>

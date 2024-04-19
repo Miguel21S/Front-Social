@@ -18,6 +18,8 @@ export const Profile = () => {
     const [editarUsuario, setEditarUsuario] = useState(false);
     const [postsCount, setPostsCount] = useState(0);
     const [seguidoresCount, setseguidoresCount] = useState(0);
+    const [siguiendoCount, setSiguiendoCount] = useState(0);
+
 
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
 
@@ -107,7 +109,7 @@ export const Profile = () => {
                 const seguidorr = await ListaDeMisSeguidores(token)
                 // setPages({ previous: postes.data.prev, next: postes.data.next })
                 setseguidoresCount(seguidorr)
-                console.log("QUE PASSA todos POST DIME", seguidorr)
+            
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }
@@ -140,8 +142,8 @@ export const Profile = () => {
         const losQeSigo = async () => {
             try {
                 const sigo = await ListaDeSiguiendo(token);
-                setSiguiendo(sigo);
-                console.log("QUE PASSA SIGO DIME", sigo)
+                setSiguiendoCount(sigo);
+             
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }
@@ -224,7 +226,7 @@ export const Profile = () => {
                             </div>
 
                             <div className="containerPopup-Button">
-                                <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo {siguiendo.cantFollowin}</div>
+                                <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo {siguiendoCount.cantFollowin}</div>
                                 {seguidosPorMi && (
                                     <div className="popup">
                                         <button id="cerrar" onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>

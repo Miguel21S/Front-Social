@@ -12,6 +12,7 @@ import { CInput } from "../CInput/CInput";
 import { useNavigate } from 'react-router-dom';
 
 export const Header = ({ user }) => {
+  const [criteria, setCriteria] = useState("")
 
   //Instancia de conexion a modo lectura
   const navigate = useNavigate();
@@ -23,8 +24,6 @@ export const Header = ({ user }) => {
   useEffect(() => {
     console.log(rdxUser, " credenciales pasaporte");
   }, [rdxUser]);
-
-  const [criteria, setCriteria] = useState("")
 
   const searchHandler = (e) => {
     setCriteria(e.target.value)
@@ -47,7 +46,6 @@ export const Header = ({ user }) => {
               rdxUser.credentials?.token ? (
                 <>
                   {
-
                     rdxUser?.credentials?.user.userRole === "superAdmin" ?
                       <>
                         <div className="col">

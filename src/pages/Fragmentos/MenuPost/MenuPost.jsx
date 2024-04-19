@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import './MenuPost.css'
 // import { CInput } from "../../../common/CInput/CInput";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useFetcher, useNavigate } from "react-router-dom";
 import { userData } from "../../../app/slices/userSlice";
-import { ListarMisPosts } from "../../../services/rootss";
+import { ListaDeMisSeguidores, ListaDeSiguiendo, ListarMisPosts } from "../../../services/rootss";
 
 export const MenuPost = () => {
     const navigate = useNavigate();
     const [postsCount, setPostsCount] = useState(0);
-
+    const [seguidoresCount, setseguidoresCount] = useState(0);
+    const [siguiendoCount, setSiguiendoCount] = useState(0);
     //Conectamos con Redux en modo lectura
     const rdxUser = useSelector(userData);
     const token = rdxUser.credentials.token;
@@ -28,6 +29,33 @@ export const MenuPost = () => {
     //     }));
     // }
 
+    ////////////////////    MÉTODO QUE LISTA MIS SEGUIDORES     ///////////////////////
+    useEffect(() => {
+        const listaSeguidore = async () => {
+            try {
+                const seguidorr = await ListaDeMisSeguidores(token);
+                setseguidoresCount(seguidorr)
+                console.log("QUE PASSA todos POST DIME", seguidorr)
+            } catch (error) {
+                console.log("Error en fetching users:", error);
+            }
+        }
+        listaSeguidore();
+    }, [token]);
+
+    /////////////////    LISTAR MIS USUARIOS QUE SIGO     ///////////////////////
+    useEffect(() => {
+        const listaSiguiendo = async () => {
+            try {
+                const siguiendo = await ListaDeSiguiendo(token);
+                setSiguiendoCount(siguiendo);
+            } catch (error) {
+                console.log("Error en fetching users:", error);
+            }
+        }
+        listaSiguiendo();
+    }, [token])
+    
     ////////////////////    MÉTODO QUE LISTA MIS POSTS     ///////////////////////
     useEffect(() => {
         const listaPosts = async () => {
@@ -44,11 +72,11 @@ export const MenuPost = () => {
 
 
     return (
-        <div className="create-post">
-            <div className="profile-top-right">
-                <button className="profile-Seguidores">Seguidores</button>
-                <button className="profile-Siguiendo">Siguiendo</button>
-                <label className="profile-posts">Publicaciones {postsCount.postsCount}</label>
+        <div className="menu-left-perfil">
+            <div className="menu-left-elementos">
+                <button className="menu-left-Seguidores">Seguidores <div className="f">{seguidoresCount.cantFollewer}</div></button>
+                <button className="menu-left-Siguiendo">Siguiendo   <div className="f1">{siguiendoCount.cantFollowin}</div></button>
+                <label className="menu-left-posts">Publicaciones    <div className="f2">{postsCount.postsCount}</div></label>
             </div>
         </div>
     );

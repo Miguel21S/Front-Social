@@ -1,0 +1,24 @@
+
+/* estilos.css */
+
+.create-post {
+    margin: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title,
+  .content {
+    margin-bottom: 10px;
+  }
+  
+  .btn-primary {
+    margin-top: 20px;
+    align-self: flex-start; /* Alinea el botón a la izquierda */
+  }
+  
+  
+  

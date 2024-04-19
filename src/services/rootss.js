@@ -155,7 +155,7 @@ export const ListaDePosts = async (token) => {
   };
 
   try {
-    const response = await fetch(`${root}posts`, options);
+    const response = await fetch(`${root}posts/like/listAllPostsWithLikes`, options);
     const data = await response.json();
 
     if (!data.success) {

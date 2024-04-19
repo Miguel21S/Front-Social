@@ -41,7 +41,6 @@ export const Login = () => {
 
       dispatch(login({ credentials: passport }));
 
-      // console.log("ecodificado.roleName: ", decodificado.userRole)
       if (decodificado.userRole === "superAdmin") {
         navigate("/gestionusuarios");
       } else {

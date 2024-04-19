@@ -50,35 +50,38 @@ export const CrearPostes = () => {
         <div className="create-post">
 
             <div className="row">
-                
-                    <label className="title">Título:</label>
+
+                <label className="title">Título:</label>
+                <div className="titulo">
                     <CInput
                         type="title"
                         name="title"
                         placeholder=" title..."
                         value={postear.title || ""}
                         changeEmit={inputHandler}
-                    />
+                    /></div>
 
-                    <label className="content">Contenido:</label>
+                <label className="content">Contenido:</label>
+                <div className="contenido">
                     <CInput
                         type="tests"
                         name="tests"
                         placeholder=" tests..."
                         value={postear.tests || ""}
                         changeEmit={inputHandler}
-                    />
+                    /></div>
 
-                    {/* <textarea
+                {/* <textarea
                     type="tests"
                     name="tests"
                     value={postear.tests || ""}
                     placeholder=" test..."
                     onChange={(e) => setPostear(e.target.value)}
                     required
-                ></textarea> */}
-                    <button type='button' onClick={crearNuevoPost} className="btn btn-primary">Crear</button>
-              
+                   ></textarea> */}
+
+                <button id="btnCrear" type='button' onClick={crearNuevoPost} className="btn btn-primary">Publicar post</button>
+
             </div>
         </div>
     );
