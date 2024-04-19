@@ -192,30 +192,6 @@ export const ListarMisPosts = async (token) => {
   }
 }
 
-////////////////  ESTA RUTA ES DEL TAMAÑO DE MIS POST NO ES NECESARIO  /////////////////////////////
-// export const TamanoMisPosts = async (token) => {
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Authorization": `Bearer ${token}`
-//     },
-//   };
-
-//   try {
-//     const response = await fetch(`${root}posts/tamano`, options);
-//     const data = await response.json();
-
-//     if (!data.success) {
-//       throw new Error(data.message);
-//     }
-
-//     return data;
-//   } catch (error) {
-//     return error;
-//   }
-// }
-
 ////////////////  RUTA DE USUARIOS QUE SIGO  /////////////////////////////
 export const ListaDeSiguiendo = async (token) => {
   const options = {
@@ -335,6 +311,7 @@ export const eliminarPost = async (id, token) => {
   }
 }
 
+////////////////  RUTA PARA DAR LIKE EN UN POST  REVISARLO NO FUNCIONA/////////////////////////////
 export const Likes = async (_id, token) => {
   const options = {
     method: "GET",

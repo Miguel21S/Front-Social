@@ -68,7 +68,6 @@ export const Post = () => {
     /////////////////    ACTUALIZAR MI POSTS     ///////////////////////
     const actualizarPost = async (_id) => {
         try {
-
             const editaPost = await UpdatePost(_id, editedPost, token);
             setEditedPost(editaPost);
 
@@ -78,7 +77,7 @@ export const Post = () => {
         }
     }
 
-    /////////////////    LIKES EN POSTS     ///////////////////////
+    /////////////////    LIKES EN POSTS   NO FUNCIONA AUN  ///////////////////////
     useEffect(() => {
         const darLikeQuitarLike = async () => {
             try {
@@ -96,9 +95,7 @@ export const Post = () => {
     /////////////////    ELIMINAR MI POSTS     ///////////////////////
     const eliminarMiPost = async (_id) => {
         try {
-
             const elimina = await eliminarPost(_id, token);
-            console.log("Eliminación del post:", elimina);
         } catch (error) {
             console.log("Error al eliminar el post:", error);
         }

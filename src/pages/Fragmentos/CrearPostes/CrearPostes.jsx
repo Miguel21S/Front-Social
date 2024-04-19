@@ -50,38 +50,31 @@ export const CrearPostes = () => {
         <div className="create-post">
 
             <div className="row">
+                <div className="poup">
+                    <label className="title">Título:</label>
+                    <div className="titulo">
+                        <CInput
+                            type="title"
+                            name="title"
+                            placeholder=" title..."
+                            value={postear.title || ""}
+                            changeEmit={inputHandler}
+                        /></div>
 
-                <label className="title">Título:</label>
-                <div className="titulo">
-                    <CInput
-                        type="title"
-                        name="title"
-                        placeholder=" title..."
-                        value={postear.title || ""}
-                        changeEmit={inputHandler}
-                    /></div>
+                    <label className="content">Contenido:</label>
+                    <div className="contenido">
 
-                <label className="content">Contenido:</label>
-                <div className="contenido">
-                    <CInput
-                        type="tests"
-                        name="tests"
-                        placeholder=" tests..."
-                        value={postear.tests || ""}
-                        changeEmit={inputHandler}
-                    /></div>
+                        <textarea
+                            type="tests"
+                            name="tests"
+                            value={postear.tests || ""}
+                            placeholder=" test..."
+                            onChange={inputHandler}
+                            required
+                        ></textarea></div>
 
-                {/* <textarea
-                    type="tests"
-                    name="tests"
-                    value={postear.tests || ""}
-                    placeholder=" test..."
-                    onChange={(e) => setPostear(e.target.value)}
-                    required
-                   ></textarea> */}
-
-                <button id="btnCrear" type='button' onClick={crearNuevoPost} className="btn btn-primary">Publicar post</button>
-
+                    <button id="btnCrear" type='button' onClick={crearNuevoPost} className="btn btn-primary">Publicar post</button>
+                </div>
             </div>
         </div>
     );

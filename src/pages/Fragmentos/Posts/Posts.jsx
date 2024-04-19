@@ -77,15 +77,15 @@ export const Posts = () => {
                                     posts.map((post) => (
                                         <div className="cards" key={post._id}>
                                             <div className="card mb-4 h-100">
-                                                <img src="..." className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <h5 className="card-title">{post.userName}</h5>
                                                     <p className="card-text">{post.title}</p>
+                                                    <img src="..." className="card-img-top" alt="..." />
                                                     <p className="card-text">{post.tests?.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
 
                                                     <button className="btn btn-primary">Go somewhere</button>
                                                     <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
-                                                    <label className="">0</label>
+                                                    <label className="tamano-like">{post.likesCount}</label>
                                                 </div>
                                             </div>
                                         </div>

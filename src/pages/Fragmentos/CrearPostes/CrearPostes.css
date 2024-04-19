@@ -15,10 +15,10 @@
     margin-bottom: 10px;
   }
   
-  .btn-primary {
-    margin-top: 20px;
-    align-self: flex-start; /* Alinea el botón a la izquierda */
+  #btnCrear{
+    height: 5vh;
+    width: 10vw;
+    margin-top: 15px;
   }
-  
   
   

@@ -26,7 +26,10 @@ div>button {
 
 #like {
     background-color: transparent;
+}
 
+.tamano-like{
+margin-left: 10px;
 }
 
 .bi-heart:hover {
