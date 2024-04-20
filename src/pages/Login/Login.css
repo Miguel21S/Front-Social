@@ -4,7 +4,9 @@
     width: 100vw;
 
     background-color: darkgray;
-
+    background-image: url('../../img/login.jpeg');
+    background-size: cover; 
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +26,7 @@
 
 .rowl{
     background-color: rgb(255, 255, 255);
+    color: black;
     border: 10px;
     border-radius: 4px;
     padding: 12ch;
@@ -33,6 +36,6 @@
     justify-content: center; 
 }
 
-p{
-    color: rgb(56, 42, 165);
+.rowl > p{
+    color: rgb(42, 58, 165);
 }

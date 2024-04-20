@@ -1,5 +1,5 @@
 
-<img src="./src/img/pri.jpeg">
+<img src="./src//img/Registro.png">
 
 
 ---
@@ -101,13 +101,9 @@ El proyecto se encuentra en estado de construicción, a pesar de cumplir con tod
 ---
 ## Vista de la Aplicación
 
-- Vista de regidtro
-
-<img src="./src/img/mongoose.png" alt="Registro">
-
 - Vista de login
 
-<img src="./src/img/mongoose.png" alt="Login">
+<img src="./src/img/inicio.png" alt="Login">
 
 - Vista Principal
 
