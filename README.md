@@ -49,6 +49,7 @@ Para este repositorio se creara un app de parte del cliente que se conectara con
 
 Para esto se debe cumplir creando las funcionalidades de los siguientes rutas.
 
+---
 ## URLs
 
 Autenticación
@@ -92,10 +93,12 @@ Seguidores
 
 El proyecto se encuentra en estado de construicción, a pesar de cumplir con todos los requisitos exigidos y algunos extras.
 
+---
 ## Estructura y diseño de la base de datos
 
 <img src="./src/img/bd.png" alt="Model de bd">
 
+---
 ## Vista de la Aplicación
 
 - Vista de regidtro
@@ -110,18 +113,22 @@ El proyecto se encuentra en estado de construicción, a pesar de cumplir con tod
 
 <img src="./src/img/principal_3.png" alt="Principal">
 
+---
 - Vista de Perfil
 
 <img src="./src/img/perfil_5.png" alt="Perfil">
 
+---
 - Vista de Editar Publicación
 
 <img src="./src/img/editarPost_4.png" alt="Editar Publicación">
 
+---
 ## Futuras Funcionalidades
 
 Se crearán las funcionalidades de seguir y dejar de seguir un usuario, comentar las publicaciones, y subir imagenes. 
 
+---
 ## Author:
 
 Name: Miguel Bengui
