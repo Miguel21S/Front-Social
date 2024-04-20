@@ -40,7 +40,6 @@ export const CrearPostes = () => {
             }
 
             const fetched = await CrearPost(postear, token);
-            console.log("POST CREADO CON SUCCESO", fetched)
         } catch (error) {
             console.log(error);
         }

@@ -83,7 +83,7 @@ export const Posts = () => {
                                                     <img src="..." className="card-img-top" alt="..." />
                                                     <p className="card-text">{post.tests?.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
 
-                                                    <button className="btn btn-primary">Go somewhere</button>
+                                                    <button className="btn btn-primary">Ver</button>
                                                     <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
                                                     <label className="tamano-like">{post.likesCount}</label>
                                                 </div>

@@ -26,9 +26,8 @@ export const Home = () => {
       try {
         const misDatos = await MyPerfil(token);
         setMiPerfil(misDatos.data);
-
       } catch (error) {
-        
+        console.log("Error al en traer los datos:", error);
       }
     };
     perfil();
@@ -71,9 +70,7 @@ export const Home = () => {
                   }
 
                 </div>
-
               </div>
-
             </div>
           </div>
 

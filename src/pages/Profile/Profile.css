@@ -29,7 +29,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    background-color: rgb(242, 7, 7);  /* PARTE VERMELHA DO MEIO DE PERFIL ENTRE DADOS DE USUARIO*/
+    background-color: rgb(11, 11, 11);  /* PARTE VERMELHA DO MEIO DE PERFIL ENTRE DADOS DE USUARIO*/
 }
 
 .profile-left {
