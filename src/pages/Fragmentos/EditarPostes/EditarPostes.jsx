@@ -32,7 +32,6 @@ export const EditarPostes = () => {
         try {
             const editaPost = await UpdatePost(editarpost, token);
             setEditarPost(editaPost);
-            console.log("POST EDITADO CON SUCCESO", editaPost);
         } catch (error) {
             console.log(error);
         }

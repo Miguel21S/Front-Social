@@ -65,8 +65,7 @@ Usuarios
 | --- | --- | --- |---|
 | GET | /api/users | Listar todos los usuarios (super_admin) |
 | GET | /api/users/profile | Modificar los datos del perfil |
-| PUT | /api/users/profile | Actualizar datos del perfil |
-| DELETE | /api/users/{id} | Delete user (super_admin)--- | Si |
+| PUT | /api/users/profile | Actualizar datos del perfil |Si |
 
 Publicar
 

@@ -3,7 +3,7 @@ import "./Posts.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ListaDePosts } from "../../../services/rootss";
+import { Likes, ListaDePosts } from "../../../services/rootss";
 import { CrearPostes } from "../CrearPostes/CrearPostes";
 import { userData } from "../../../app/slices/userSlice";
 import { CLink } from "../../../common/CLink/CLink";
@@ -13,6 +13,7 @@ export const Posts = () => {
     const navigate = useNavigate();
 
     const [posts, setPosts] = useState([]);
+   const [likess, setLikes] = useState({})
     const [crearPost, setCrearPost] = useState(false);
 
     const crearPostTogglePopup = () => {
@@ -42,10 +43,27 @@ export const Posts = () => {
                 // setPages({ previous: postes.data.prev, next: postes.data.next })
                 setPosts(postes.data)
             } catch (error) {
+                console.log("Error en fetching posts:", error);
             }
         }
         listaPosts();
     }, [token]);
+
+    const likePost = async (id) => {
+        try {
+            const fetched = await Likes(id, token);
+            setLikes(fetched);
+            if (fetched.success) {
+                // Actualizar el estado de los likes si es necesario
+                // Por ejemplo, podrías mostrar el conteo de likes en los posts
+                console.log("Like dado:", fetched.cantLikes);
+            } else {
+                console.error("Error al dar like:", fetched.message);
+            }
+        } catch (error) {
+            console.error("Error al dar like:", error);
+        }
+    };
 
     // const changePage = async (destination) => {
     //     const li = await ListaDePosts()
@@ -84,7 +102,7 @@ export const Posts = () => {
                                                     <p className="card-text">{post.tests?.length > 50 ? post.tests.substring(0, 50) + "..." : post.tests}</p>
 
                                                     <button className="btn btn-primary">Ver</button>
-                                                    <div id="like" className="btn btn-primary" ><i className="bi bi-heart btn"></i></div>
+                                                    <div id="like" onClick={() => likePost(post._id)} className="btn btn-primary" ><i  className="bi bi-heart btn"></i></div>
                                                     <label className="tamano-like">{post.likesCount}</label>
                                                 </div>
                                             </div>

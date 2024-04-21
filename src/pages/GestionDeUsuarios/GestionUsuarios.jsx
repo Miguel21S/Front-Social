@@ -50,7 +50,7 @@ export const GestionUsuarios = () => {
             try {
                 const usuarios = await ListarUsuarios(token);
                 setUsuariosSistema(usuarios.data);
-                console.log("LISTA DE USUARIOS", usuarios)
+                
             } catch (error) {
                 onsole.log("Error:", error);
             }
@@ -63,7 +63,7 @@ export const GestionUsuarios = () => {
             try {
     
                 const elimina = await EliminarUsuario(_id, token);
-                console.log("Eliminación de usuario:", elimina);
+                // console.log("Eliminación de usuario:", elimina);
             } catch (error) {
                 console.log("Error al eliminar usuario:", error);
             }

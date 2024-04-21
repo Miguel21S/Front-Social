@@ -35,7 +35,6 @@ export const MenuPost = () => {
             try {
                 const seguidorr = await ListaDeMisSeguidores(token);
                 setseguidoresCount(seguidorr)
-                console.log("QUE PASSA todos POST DIME", seguidorr)
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }
@@ -62,7 +61,6 @@ export const MenuPost = () => {
             try {
                 const postes = await ListarMisPosts(token)
                 setPostsCount(postes)
-                console.log("QUE PASSA todos POST DIME", postes)
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }

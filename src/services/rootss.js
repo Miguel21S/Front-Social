@@ -311,18 +311,19 @@ export const eliminarPost = async (id, token) => {
   }
 }
 
-////////////////  RUTA PARA DAR LIKE EN UN POST  REVISARLO NO FUNCIONA/////////////////////////////
-export const Likes = async (_id, token) => {
+////////////////  RUTA PARA DAR LIKE EN UN POST /////////////////////////////
+export const Likes = async (id, token) => {
   const options = {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
+    body: JSON.stringify({postId: id }),
   };
-
+  console.log("TOKEN DEL LIKE: ", id)
   try {
-    const response = await fetch(`${root}posts/like/tamano/${id}`, options)
+    const response = await fetch(`${root}posts/like/${id}`, options)
     console.log("RESPONSE: ", response)
     const data = await response.json();
     console.log("DATA: ", data)

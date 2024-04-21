@@ -33,7 +33,6 @@ export const Login = () => {
     if (fetched.token) {
       const decodificado = decodeToken(fetched.token);
       
-      console.log("decodificado: ", decodificado)
       const passport = {
         token: fetched.token,
         user: decodificado,

@@ -42,7 +42,6 @@ export const Post = () => {
             try {
                 const post = await ListarMisPosts(token);
                 setPosts(post.data);
-                console.log("QUE PASSA POST DIME", post)
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }
@@ -78,19 +77,19 @@ export const Post = () => {
     }
 
     /////////////////    LIKES EN POSTS   NO FUNCIONA AUN  ///////////////////////
-    useEffect(() => {
-        const darLikeQuitarLike = async () => {
-            try {
-                const like = await Likes(_id, token);
-                setLikes(like.cantLikes)
-                console.log("LIKESSSS: ", like.cantLikes)
-            } catch (error) {
-                console.log("Error Like:", error);
+    // useEffect(() => {
+    //     const darLikeQuitarLike = async () => {
+    //         try {
+    //             const like = await Likes(_id, token);
+    //             setLikes(like.cantLikes)
+    //             console.log("LIKESSSS: ", like.cantLikes)
+    //         } catch (error) {
+    //             console.log("Error Like:", error);
 
-            }
-        }
-        darLikeQuitarLike();
-    }, [token]);
+    //         }
+    //     }
+    //     darLikeQuitarLike();
+    // }, [token]);
 
     /////////////////    ELIMINAR MI POSTS     ///////////////////////
     const eliminarMiPost = async (_id) => {

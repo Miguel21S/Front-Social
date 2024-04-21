@@ -12,15 +12,12 @@ export const Profile = () => {
     const navigate = useNavigate();
 
     const [siguiendo, setSiguiendo] = useState({});
-    const [siguidores, setSiguidores] = useState({});
     const [miSeguidores, setMiSeguidores] = useState(false);
     const [seguidosPorMi, setSeguidosPorMi] = useState(false);
     const [editarUsuario, setEditarUsuario] = useState(false);
     const [postsCount, setPostsCount] = useState(0);
     const [seguidoresCount, setseguidoresCount] = useState(0);
     const [siguiendoCount, setSiguiendoCount] = useState(0);
-
-
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
 
     const [perfi, setPerfil] = useState([]);
@@ -28,6 +25,8 @@ export const Profile = () => {
         name: "",
         email: ""
     });
+
+    const [seguidores, setSiguidores] = useState([]);
 
     //Instancia de Redux para escritura
     //Conectamos con Redux en modo lectura
@@ -46,6 +45,27 @@ export const Profile = () => {
             [name]: value
         }));
     }
+
+    /////////////////    MI PERFIL     ///////////////////////
+    useEffect(() => {
+        const miPerfil = async () => {
+            try {
+                const perfil = await MyPerfil(token);
+                setPerfil(perfil.data);
+
+                setEditePerfil({
+                    name: perfil.data.name,
+                    email: perfil.data.email
+                });
+                // console.log("QUE PASSA PERFIL DIME", perfil)
+
+            } catch (error) {
+                console.log("Error en fetching profile:", error);
+            }
+        };
+        miPerfil();
+    }, [token]);
+
     ////////////////////////     FUNCIÓN PARA ABRIR POPUP DE EDITAR       /////////////////////////////////
     const editarUsuarioTogglePopup = (usuario) => {
         setUsuarioSeleccionado(usuario);
@@ -68,7 +88,7 @@ export const Profile = () => {
                 name: usuarioSeleccionado.name,
                 email: usuarioSeleccionado.email
             })
-            console.log("EDITADO: ", editar);
+            // console.log("EDITADO: ", editar);
         } catch (error) {
             console.log("Error al editar sus datos:", error);
         }
@@ -87,14 +107,14 @@ export const Profile = () => {
     };
 
 
-    ////////////////////    MÉTODO QUE LISTA MIS POSTS     ///////////////////////
+    ////////////////////    MÉTODO QUE TRAE LA CANTIDAD DE MIS POSTS     ///////////////////////
     useEffect(() => {
         const listaPosts = async () => {
             try {
                 const postes = await ListarMisPosts(token)
                 // setPages({ previous: postes.data.prev, next: postes.data.next })
                 setPostsCount(postes)
-                console.log("QUE PASSA todos POST DIME", postes)
+                // console.log("QUE PASSA todos POST DIME", postes)
             } catch (error) {
                 console.log("Error ", error);
             }
@@ -102,14 +122,14 @@ export const Profile = () => {
         listaPosts();
     }, [token]);
 
-    ////////////////////    MÉTODO QUE LISTA MIS SEGUIDORES     ///////////////////////
+    ////////////////////    MÉTODO QUE TRAE LA CANTIDAD DE MIS SEGUIDORES     ///////////////////////
     useEffect(() => {
         const listaSeguidore = async () => {
             try {
                 const seguidorr = await ListaDeMisSeguidores(token)
                 // setPages({ previous: postes.data.prev, next: postes.data.next })
                 setseguidoresCount(seguidorr)
-            
+
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }
@@ -117,33 +137,13 @@ export const Profile = () => {
         listaSeguidore();
     }, [token]);
 
-    /////////////////    MI PERFIL     ///////////////////////
-    useEffect(() => {
-        const miPerfil = async () => {
-            try {
-                const perfil = await MyPerfil(token);
-                setPerfil(perfil.data);
-
-                setEditePerfil({
-                    name: perfil.data.name,
-                    email: perfil.data.email
-                });
-                console.log("QUE PASSA PERFIL DIME", perfil)
-
-            } catch (error) {
-                console.log("Error en fetching profile:", error);
-            }
-        };
-        miPerfil();
-    }, [token]);
-
-    /////////////////    LISTAR MIS USUARIOS QUE SIGO     ///////////////////////
+    /////////////////    MÉTODO QUE TRAE LA CANTIDAD DE USUARIOS QUE SIGO     ///////////////////////
     useEffect(() => {
         const losQeSigo = async () => {
             try {
                 const sigo = await ListaDeSiguiendo(token);
                 setSiguiendoCount(sigo);
-             
+
             } catch (error) {
                 console.log("Error en fetching users:", error);
             }
@@ -155,14 +155,26 @@ export const Profile = () => {
     useEffect(() => {
         const misSeguidores = async () => {
             try {
-                const Seguidore = await ListaDeMisSeguidores(token);
-                setSiguidores(Seguidore);
-                console.log("QUE PASSA SEGUIDORES DIME", Seguidore)
+                const seguidore = await ListaDeMisSeguidores(token);
+                setSiguidores(seguidore.data);
             } catch (error) {
-                console.log("Error en fetching users:", error);
+                console.log("Error en fetching seguidores:", error);
             }
         }
         misSeguidores();
+    }, [token])
+
+    useEffect(() => {
+        const losQsigo = async () => {
+            try {
+                const usuariosQSigo = await ListaDeSiguiendo(token);
+                setSeguidosPorMi(usuariosQSigo.data);
+                console.log("QUE DIME", usuariosQSigo.data)
+            } catch (error) {
+                console.log("Error en fetching usuarios que sigo:", error);
+            }
+        }
+        losQsigo();
     }, [token])
 
     return (
@@ -171,6 +183,7 @@ export const Profile = () => {
                 <div className="profile-design">
                     <div className="profile-wrapper">
                         <div className="profile-left">
+
                             {perfi?.length > 0 ? (
                                 perfi.map((perf) => (
                                     <div key={perf._id}>
@@ -211,27 +224,59 @@ export const Profile = () => {
 
                         <hr />
                         <div className="profile-right">
-
                             <div className="profile-posts">Publicaciones {postsCount.postsCount}</div>
-
                             <div className="containerPopup-Top">
                                 <div onClick={miSeguidoresTogglePopup} className="profile-Seguidores">Seguidores {seguidoresCount.cantFollewer}</div>
-                                {miSeguidores && (
-                                    <div className="popup">
-                                        <button id="cerrar" onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
-                                        <h2>Vista Reducida SEGUIDORES</h2>
 
+                                {miSeguidores && (
+                                    <div className="container-poup">
+                                        <div className="popup">
+                                            <button id="cerrar" onClick={miSeguidoresTogglePopup}><i className="bi bi-file-excel"></i></button>
+                                            <h2>Vista Reducida SEGUIDORES</h2>
+                                            <div className="popup-content">
+                                                {
+                                                    seguidores && seguidores.length > 0 ? (
+                                                        <div>
+                                                            {seguidores.map((segui) => (
+                                                                <div key={segui._id} >
+                                                                    <p className="datosUsuario">{segui.nameUser}</p>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    ) : (
+                                                        <div>No hay datos de perfil disponibles</div>
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
+
                             </div>
 
                             <div className="containerPopup-Button">
                                 <div onClick={seguidosPorMiTogglePopup} className="profile-Siguiendo">Siguiendo {siguiendoCount.cantFollowin}</div>
                                 {seguidosPorMi && (
-                                    <div className="popup">
-                                        <button id="cerrar" onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>
-                                        <h2>Vista Reducida SEGUIDOS</h2>
-
+                                    <div className="container-poup">
+                                        <div className="popup">
+                                            <button id="cerrar" onClick={seguidosPorMiTogglePopup}><i className="bi bi-file-excel"></i></button>
+                                            <h2>Vista Reducida SEGUIDOS</h2>
+                                            <div className="popup-content">
+                                                {
+                                                    seguidosPorMi && seguidosPorMi.length > 0 ? (
+                                                        <div>
+                                                            {seguidosPorMi.map((sigo) => (
+                                                                <div key={sigo._id} >
+                                                                    <p className="datosUsuario">{sigo.nameUserFollowers}</p>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    ) : (
+                                                        <div>No hay datos de perfil disponibles</div>
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
                             </div>

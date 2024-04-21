@@ -22,7 +22,7 @@ export const Header = ({ user }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(rdxUser, " credenciales pasaporte");
+    // console.log(rdxUser, " credenciales pasaporte");
   }, [rdxUser]);
 
   const searchHandler = (e) => {
